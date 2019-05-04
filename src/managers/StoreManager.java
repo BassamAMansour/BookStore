@@ -15,12 +15,11 @@ public class StoreManager {
         this.userId = userId;
     }
 
-    boolean addBook(Book book) {
+    void addBook(Book book) {
         book.setAddedBy(userId);
 
         TransactionsHandler.execute((session) -> session.saveOrUpdate(book));
 
-        return true;
     }
 
     void addBooks(List<Book> books) {
