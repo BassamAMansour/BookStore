@@ -1,13 +1,12 @@
 package entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@IdClass(PublisherPK.class)
 public class Publisher {
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private String phone;

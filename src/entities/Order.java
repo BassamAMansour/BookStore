@@ -1,13 +1,11 @@
 package entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Order {
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int orderedQuantity;
     private int bookId;

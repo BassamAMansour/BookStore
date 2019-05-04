@@ -26,21 +26,18 @@ public class SalesManager {
         List<Sale> sales = extractSales(cardNum, expirationDate);
 
         for (Sale sale : sales) {
-            boolean isValid = addSale(sale);
+            //TODO:Implement
 
-            if (!isValid) {
-                //TODO:Implement
-            }
+            addSale(sale);
         }
 
         return true;
     }
 
-    public boolean addSale(Sale sale) {
+    public void addSale(Sale sale) {
 
         //TODO:Implement
 
-        return true;
     }
 
     private LinkedList<Sale> extractSales(String cardNum, Date expirationDate) {

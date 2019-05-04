@@ -1,16 +1,15 @@
 package entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@IdClass(UserPK.class)
 public class User {
     public static final int PRIVILEGE_MANAGER = 1;
     public static final int PRIVILEGE_CUSTOMER = 0;
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String username;
     private String password;

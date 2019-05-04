@@ -1,12 +1,10 @@
 package entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@IdClass(BookPK.class)
 public class Book {
     private int isbn;
     private String title;

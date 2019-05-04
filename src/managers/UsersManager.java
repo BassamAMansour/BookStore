@@ -11,11 +11,18 @@ public class UsersManager {
         if (user == null || user.getPrivilegeType() == User.PRIVILEGE_MANAGER)
             throw new Exception("Not allowed to create a manager!");
 
-        TransactionsHandler.execute((session, transaction) -> session.save(user));
+        TransactionsHandler.execute((session) -> session.save(user));
     }
 
-    void updateUser(User user) {
-        TransactionsHandler.execute((session, transaction) -> session.update(user));
+    public static User getUser(String username, String password) {
+        AtomicReference<User> user = new AtomicReference<>();
+
+        //TODO:Implement
+        TransactionsHandler.execute((session) -> user.set(session.get(User.class, username)));
+
+        if (user.get() != null && !password.equals(user.get().getPassword())) return null;
+
+        return user.get();
     }
 
     void promoteUser(User user, int privilegeLevel) {
@@ -23,20 +30,16 @@ public class UsersManager {
         updateUser(user);
     }
 
-    public User getUser(long userId) {
-        AtomicReference<User> user = new AtomicReference<>();
-
-        TransactionsHandler.execute((session, transaction) -> user.set(session.get(User.class, userId)));
-
-        return user.get();
+    void updateUser(User user) {
+        TransactionsHandler.execute((session) -> session.update(user));
     }
 
-    public static User getUser(String username, String password) {
+    public User getUser(int userId) {
         AtomicReference<User> user = new AtomicReference<>();
 
-        TransactionsHandler.execute((session, transaction) -> user.set(session.get(User.class, username)));
+        //TODO:Implement
 
-        if (user.get() != null && !password.equals(user.get().getPassword())) return null;
+        TransactionsHandler.execute((session) -> user.set(session.get(User.class, userId)));
 
         return user.get();
     }

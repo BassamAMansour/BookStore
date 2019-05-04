@@ -26,8 +26,7 @@ import org.hibernate.cfg.Configuration;
 
         try (Session session = getSession()) {
             transaction = session.beginTransaction();
-
-            dbQuery.execute(session, transaction);
+            dbQuery.execute(session);
 
             transaction.commit();
         } catch (HibernateException he) {
@@ -37,6 +36,6 @@ import org.hibernate.cfg.Configuration;
     }
 
     public interface DBQuery {
-        void execute(Session session, Transaction transaction);
+        void execute(Session session);
     }
 }

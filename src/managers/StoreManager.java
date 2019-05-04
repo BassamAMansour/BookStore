@@ -1,11 +1,13 @@
 package managers;
 
+import database.TransactionsHandler;
 import entities.Book;
 import entities.Order;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
- public class StoreManager {
+public class StoreManager {
 
     private int userId;
 
@@ -16,6 +18,7 @@ import java.util.List;
     boolean addBook(Book book) {
         book.setAddedBy(userId);
 
+        TransactionsHandler.execute((session) -> session.saveOrUpdate(book));
 
         return true;
     }
@@ -26,21 +29,39 @@ import java.util.List;
             book.setAddedBy(userId);
         }
 
+        TransactionsHandler.execute((session) -> {
+            for (Book book : books) {
+                session.saveOrUpdate(book);
+            }
+        });
     }
 
-    boolean updateBook(Book book) {
+    void updateBook(Book book) {
+        TransactionsHandler.execute((session) -> session.update(book));
+    }
 
+    Book getBook(int isbn) {
+        AtomicReference<Book> book = new AtomicReference<>();
 
-        return true;
+        TransactionsHandler.execute((session) -> book.set(session.get(Book.class, isbn)));
+
+        return book.get();
     }
 
     void addOrder(Order order) {
-
+        TransactionsHandler.execute((session) -> session.saveOrUpdate(order));
     }
 
-    boolean confirmOrder(long orderId) {
+    Order getOrder(long orderId) {
+        AtomicReference<Order> order = new AtomicReference<>();
 
-        return true;
+        TransactionsHandler.execute((session) -> order.set(session.get(Order.class, orderId)));
+
+        return order.get();
+    }
+
+    void confirmOrder(long orderId) {
+        TransactionsHandler.execute((session) -> session.delete(session.get(Order.class, orderId)));
     }
 
 }
