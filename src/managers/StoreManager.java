@@ -15,43 +15,30 @@ public class StoreManager {
         this.userId = userId;
     }
 
-    void addBook(Book book) {
+    public void addBook(Book book) {
         book.setAddedBy(userId);
 
         TransactionsHandler.execute((session) -> session.saveOrUpdate(book));
-
     }
 
-    void addBooks(List<Book> books) {
-
-        for (Book book : books) {
-            book.setAddedBy(userId);
-        }
-
+    public void addBooks(List<Book> books) {
         TransactionsHandler.execute((session) -> {
             for (Book book : books) {
+                book.setAddedBy(userId);
                 session.saveOrUpdate(book);
             }
         });
     }
 
-    void updateBook(Book book) {
+    public void updateBook(Book book) {
         TransactionsHandler.execute((session) -> session.update(book));
     }
 
-    Book getBook(int isbn) {
-        AtomicReference<Book> book = new AtomicReference<>();
-
-        TransactionsHandler.execute((session) -> book.set(session.get(Book.class, isbn)));
-
-        return book.get();
-    }
-
-    void addOrder(Order order) {
+    public void addOrder(Order order) {
         TransactionsHandler.execute((session) -> session.saveOrUpdate(order));
     }
 
-    Order getOrder(long orderId) {
+    public Order getOrder(long orderId) {
         AtomicReference<Order> order = new AtomicReference<>();
 
         TransactionsHandler.execute((session) -> order.set(session.get(Order.class, orderId)));
@@ -59,7 +46,7 @@ public class StoreManager {
         return order.get();
     }
 
-    void confirmOrder(long orderId) {
+    public void confirmOrder(long orderId) {
         TransactionsHandler.execute((session) -> session.delete(session.get(Order.class, orderId)));
     }
 

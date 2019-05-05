@@ -1,13 +1,16 @@
 package managers;
 
+import database.TransactionsHandler;
 import entities.Book;
 import entities.Sale;
 import models.Cart;
+import org.hibernate.Session;
 
 import java.sql.Date;
 import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SalesManager {
 
@@ -25,19 +28,38 @@ public class SalesManager {
 
         List<Sale> sales = extractSales(cardNum, expirationDate);
 
-        for (Sale sale : sales) {
-            //TODO:Implement
+        AtomicBoolean saleSuccess = new AtomicBoolean(true);
 
-            addSale(sale);
-        }
+        TransactionsHandler.execute((session -> saleSuccess.set(proceedWithSales(session, sales))));
 
-        return true;
+        return saleSuccess.get();
     }
 
-    public void addSale(Sale sale) {
+    private boolean proceedWithSales(Session session, List<Sale> sales) {
 
-        //TODO:Implement
+        boolean saleSuccess = true;
 
+        //TODO: Add locks
+        for (Sale sale : sales) {
+            Book dbBook = new BooksFinder().findBook(sale.getBookId());
+
+            if (dbBook.getQuantity() < sale.getSoldQuantity()) {
+                saleSuccess = false;
+                rejectSale(session, sale);
+                break;
+            } else {
+                dbBook.setQuantity(dbBook.getQuantity() - sale.getSoldQuantity());
+                session.update(dbBook);
+                session.save(sale);
+            }
+        }
+
+        return saleSuccess;
+    }
+
+    private void rejectSale(Session session, Sale sale) {
+        session.getTransaction().rollback();
+        System.out.printf("Sale #%d for book isbn = %d was rejected for insufficient quantity!\n", sale.getId(), sale.getBookId());
     }
 
     private LinkedList<Sale> extractSales(String cardNum, Date expirationDate) {
