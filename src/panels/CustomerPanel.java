@@ -21,7 +21,7 @@ public class CustomerPanel {
     }
 
     public static CustomerPanel fromCredentials(String username, String password) throws Exception {
-        User user = UsersManager.getUser(username, password);
+        User user = new UsersManager().getUser(username, password);
 
         if (user == null) throw new Exception("User not found!");
 
