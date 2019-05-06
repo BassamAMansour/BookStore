@@ -90,3 +90,29 @@ create table if not exists sale
       on update cascade on delete cascade
 );
 
+delimiter //
+create trigger noNegativeQuantity before update on book for each row
+begin
+  if new.quantity < 0 then
+     signal sqlstate '45000';
+  end if;
+end //
+delimiter ;
+
+delimiter //
+create trigger createOrder after update on book for each row
+begin
+  if new.quantity < new.threshold then
+    insert into `order` values (NULL, 20, NEW.isbn);
+  end if;
+end //
+delimiter ;
+delimiter //
+
+delimiter //
+create trigger orderDeletion before delete on `order` for each row
+begin
+  update book set quantity = quantity + OLD.orderedQuantity where isbn = OLD.bookID;
+end //
+delimiter ;
+delimiter //
