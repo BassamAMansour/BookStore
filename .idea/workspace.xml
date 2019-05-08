@@ -7,33 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ef63065-d31a-465b-af40-47687394166a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_8_0_16.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fxml/account.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fxml/cart.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fxml/login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fxml/main.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fxml/orders.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fxml/promote.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fxml/signup.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fxml/statistics.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/fxml/store.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/style/tab.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/AccountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/CartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/OrdersController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/PaneNavigator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/PromoteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/SignupController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/StatisticsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/StoreController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Book Store.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Book Store.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/hibernate.cfg.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -393,12 +369,12 @@
       <updated>1557158452363</updated>
       <workItem from="1557158471207" duration="10695000" />
       <workItem from="1557231482228" duration="5881000" />
-      <workItem from="1557317119441" duration="13132000" />
+      <workItem from="1557317119441" duration="13255000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29708000" />
+    <option name="totallyTimeSpent" value="29831000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -798,7 +774,7 @@
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

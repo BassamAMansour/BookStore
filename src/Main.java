@@ -24,9 +24,6 @@ public class Main {
         user.setEmail("Email");*/
 
         //CustomerPanel customerPanel = CustomerPanel.fromNewUser(user);
-
-
-
     }
 
 }
