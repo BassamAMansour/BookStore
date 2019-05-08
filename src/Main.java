@@ -1,3 +1,6 @@
+import panels.CustomerPanel;
+import panels.ManagerPanel;
+
 public class Main {
 
 
@@ -12,8 +15,9 @@ public class Main {
         user.setUsername("username");
         user.setEmail("Email");*/
 
-        //CustomerPanel customerPanel = CustomerPanel.fromNewUser(user);
+        CustomerPanel customerPanel = CustomerPanel.fromCredentials("Brock_Greenholt86", "5MDBPTXd2dGWzTl");
 
+        ManagerPanel managerPanel = ManagerPanel.fromCredentials("Josiane.Dicki", "rPrBBa8rON0Phhz");
 
 
     }

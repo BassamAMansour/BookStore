@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class UsersManager {
 
-    public static void addUser(User user) throws Exception {
+    public void addUser(User user) throws Exception {
         if (user == null || user.getPrivilegeType() == User.PRIVILEGE_MANAGER)
             throw new Exception("Not allowed to create a manager!");
 
