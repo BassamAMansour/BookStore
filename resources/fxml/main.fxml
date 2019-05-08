@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+    <left>
+        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="tab" BorderPane.alignment="CENTER">
+            <children>
+                <ToggleButton fx:id="accountTab" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" selected="true" styleClass="tab-button" text="Account">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="TabGroup" />
+                    </toggleGroup>
+                </ToggleButton>
+                <ToggleButton fx:id="storeTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" styleClass="tab-button" text="Store" toggleGroup="$TabGroup" />
+                <ToggleButton fx:id="cartTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" styleClass="tab-button" text="Cart" toggleGroup="$TabGroup" />
+                <ToggleButton fx:id="ordersTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="103.0" styleClass="tab-button" text="Orders" toggleGroup="$TabGroup" />
+                <ToggleButton fx:id="promoteCustomersTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" styleClass="tab-button" text="Promote Customers" toggleGroup="$TabGroup" />
+                <ToggleButton fx:id="statisticsTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" styleClass="tab-button" text="Statistics" toggleGroup="$TabGroup" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="paneHolder" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
