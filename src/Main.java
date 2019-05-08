@@ -1,5 +1,10 @@
+import entities.Sale;
 import panels.CustomerPanel;
 import panels.ManagerPanel;
+
+import java.sql.Date;
+import java.time.Instant;
+import java.util.List;
 
 public class Main {
 
@@ -19,7 +24,9 @@ public class Main {
 
         ManagerPanel managerPanel = ManagerPanel.fromCredentials("Josiane.Dicki", "rPrBBa8rON0Phhz");
 
+        List<Sale> sales = managerPanel.getReportsManager().getSalesAfterDate(new Date(Instant.now().getEpochSecond()));
 
+        System.out.println(sales);
     }
 
 

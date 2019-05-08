@@ -103,4 +103,9 @@ public class Sale {
     public int hashCode() {
         return Objects.hash(id, saleDate, expirationDate, cardNum, soldQuantity, userId, bookId);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d %s %s %s %d %d %d", id, saleDate, expirationDate, cardNum, soldQuantity, userId, bookId);
+    }
 }
