@@ -116,3 +116,6 @@ begin
 end //
 delimiter ;
 delimiter //
+
+use book_store;
+insert into user values(54716, "Vincent.Turcotte96", "GzCkkMpp5o5Nuw7", "Joanie92@yahoo.com", "Eveline", "Hamill", 56987, "Crooks Hill South Vitamouth", 1);
