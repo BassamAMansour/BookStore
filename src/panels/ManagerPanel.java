@@ -21,6 +21,10 @@ public class ManagerPanel extends CustomerPanel {
         return new ManagerPanel(manager);
     }
 
+    public static ManagerPanel fromCredentials(String username, String password) throws Exception {
+        return fromManager(new UsersManager().getUser(username, password));
+    }
+
     public StoreManager getStoreManager() {
         return storeManager;
     }

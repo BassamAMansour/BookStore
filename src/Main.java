@@ -3,11 +3,14 @@ import entities.Order;
 import entities.User;
 import managers.UsersManager;
 import org.hibernate.service.spi.Manageable;
+import entities.Sale;
 import panels.CustomerPanel;
 import panels.ManagerPanel;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
+import java.time.Instant;
 import java.util.List;
 
 public class Main {
@@ -17,6 +20,13 @@ public class Main {
 
         //* Testing Business Processes *//
 
+        CustomerPanel customerPanel = CustomerPanel.fromCredentials("Brock_Greenholt86", "5MDBPTXd2dGWzTl");
+
+        ManagerPanel managerPanel = ManagerPanel.fromCredentials("Josiane.Dicki", "rPrBBa8rON0Phhz");
+
+        List<Sale> sales = managerPanel.getReportsManager().getSalesAfterDate(new Date(Instant.now().getEpochSecond()));
+
+        System.out.println(sales);
 
         CustomerPanel userPanel;
         //ManagerPanel managerPanel;
@@ -32,7 +42,6 @@ public class Main {
         user.setAddress("address");
         user.setPrivilegeType(User.PRIVILEGE_CUSTOMER);
         customerPanel = CustomerPanel.fromNewUser(user);
-
 
         // Login
         customerPanel = CustomerPanel.fromCredentials("mahmoudtarek","12345");

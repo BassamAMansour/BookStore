@@ -33,7 +33,7 @@ public class CustomerPanel {
         if (user == null || user.getPrivilegeType() == User.PRIVILEGE_MANAGER)
             throw new Exception("Not allowed to create a manager!");
 
-        UsersManager.addUser(user);
+        new UsersManager().addUser(user);
 
         return new CustomerPanel(user);
     }

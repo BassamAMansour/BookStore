@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class ReportsManager {
 
-    List<Sale> getSalesAfterDate(Date date) {
+    public List<Sale> getSalesAfterDate(Date date) {
         AtomicReference<List<Sale>> sales = new AtomicReference<>();
 
         TransactionsHandler.execute((session -> sales.set(getSalesAfterDate(session, date))));
@@ -20,7 +20,7 @@ public class ReportsManager {
         return sales.get();
     }
 
-    List<User> getTopPurchasersAfterDate(Date date, int limit) {
+    public List<User> getTopPurchasersAfterDate(Date date, int limit) {
         AtomicReference<List<User>> users = new AtomicReference<>();
 
         TransactionsHandler.execute((session -> users.set(getTopPurchasersAfterDate(session, date, limit))));
@@ -28,7 +28,7 @@ public class ReportsManager {
         return users.get();
     }
 
-    List<Book> getTopSellingBooksAfterDate(Date date, int limit) {
+    public List<Book> getTopSellingBooksAfterDate(Date date, int limit) {
         AtomicReference<List<Book>> books = new AtomicReference<>();
 
         TransactionsHandler.execute((session -> books.set(getTopSellingBooksAfterDate(session, date, limit))));
@@ -37,7 +37,7 @@ public class ReportsManager {
     }
 
     private List<Sale> getSalesAfterDate(Session session, Date date) {
-        String query = "FROM " + Sale.class.getName() + " AS S WHERE S.saleDate >= :saleDate";
+        String query = "FROM " + Sale.class.getName() + " AS S WHERE S.saleDate < :saleDate";
 
         return session.createQuery(query, Sale.class)
                 .setParameter("saleDate", date)
