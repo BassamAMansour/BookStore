@@ -20,6 +20,7 @@ public class Main {
 
         //* Testing Business Processes *//
 
+        /*
         CustomerPanel customerPanel = CustomerPanel.fromCredentials("Brock_Greenholt86", "5MDBPTXd2dGWzTl");
 
         ManagerPanel managerPanel = ManagerPanel.fromCredentials("Josiane.Dicki", "rPrBBa8rON0Phhz");
@@ -28,8 +29,8 @@ public class Main {
 
         System.out.println(sales);
 
-        CustomerPanel userPanel;
-        //ManagerPanel managerPanel;
+         */
+
         /*
         // Sign up - new customer
         User user = new User();
@@ -48,9 +49,12 @@ public class Main {
         */
 
         // Login as manager
-        userPanel = CustomerPanel.fromCredentials("admin","admin");
-        if(userPanel.getUser().getPrivilegeType()==User.PRIVILEGE_MANAGER){
-            userPanel = ManagerPanel.fromManager(userPanel.getUser());
+        ManagerPanel userPanel;
+        CustomerPanel customerPanel = CustomerPanel.fromCredentials("admin","admin");
+        if(customerPanel.getUser().getPrivilegeType()==User.PRIVILEGE_MANAGER){
+            userPanel = ManagerPanel.fromManager(customerPanel.getUser());
+        }else{
+            userPanel = (ManagerPanel) customerPanel;
         }
 
         /*

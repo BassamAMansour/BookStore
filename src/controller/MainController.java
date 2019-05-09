@@ -7,12 +7,20 @@ import javafx.scene.Node;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.StackPane;
 import panels.CustomerPanel;
+import panels.ManagerPanel;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+
+    public static final String ACCOUNT_TAB = "Account";
+    public static final String STORE_TAB = "Store";
+    public static final String CART_TAB = "Cart";
+    public static final String ORDERS_TAB = "Orders";
+    public static final String PROMOTE_TAB = "Promote Customers";
+    public static final String STATISTICS_TAB = "Statistics";
 
     @FXML private StackPane paneHolder;
     @FXML private ToggleButton accountTab;
@@ -22,7 +30,7 @@ public class MainController implements Initializable {
     @FXML private ToggleButton promoteCustomersTab;
     @FXML private ToggleButton statisticsTab;
 
-    public static CustomerPanel userPanel;
+    public static ManagerPanel userPanel;
 
     private HashMap<String,ToggleButton> tabs =  new HashMap<>();
 
@@ -44,17 +52,17 @@ public class MainController implements Initializable {
         currentTab = btn;
         String tab = btn.getText();
         System.out.println(tab);
-        if(tab.equals("Account")){
+        if(ACCOUNT_TAB.equals(tab)){
             PaneNavigator.loadPane(PaneNavigator.ACCOUNT_PANE);
-        }else if(tab.equals("Store")){
+        }else if(STORE_TAB.equals(tab)){
             PaneNavigator.loadPane(PaneNavigator.STORE_PANE);
-        }else if(tab.equals("Cart")){
+        }else if(CART_TAB.equals(tab)){
             PaneNavigator.loadPane(PaneNavigator.CART_PANE);
-        }else if(tab.equals("Orders")){
+        }else if(ORDERS_TAB.equals(tab)){
             PaneNavigator.loadPane(PaneNavigator.ORDERS_PANE);
-        }else if(tab.equals("Promote Customers")){
+        }else if(PROMOTE_TAB.equals(tab)){
             PaneNavigator.loadPane(PaneNavigator.PROMOTE_CUSTOMERS_PANE);
-        }else if(tab.equals("Statistics")){
+        }else if(STATISTICS_TAB.equals(tab)){
             PaneNavigator.loadPane(PaneNavigator.STATISTICS_PANE);
         }
     }
@@ -62,12 +70,12 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tabs.put("account",accountTab);
-        tabs.put("store",storeTab);
-        tabs.put("cart",cartTab);
-        tabs.put("orders",ordersTab);
-        tabs.put("promote",promoteCustomersTab);
-        tabs.put("statistics",statisticsTab);
+        tabs.put(PaneNavigator.ACCOUNT_PANE,accountTab);
+        tabs.put(PaneNavigator.STORE_PANE,storeTab);
+        tabs.put(PaneNavigator.CART_PANE,cartTab);
+        tabs.put(PaneNavigator.ORDERS_PANE,ordersTab);
+        tabs.put(PaneNavigator.PROMOTE_CUSTOMERS_PANE,promoteCustomersTab);
+        tabs.put(PaneNavigator.STATISTICS_PANE,statisticsTab);
     }
 
 }

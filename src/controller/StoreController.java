@@ -1,24 +1,35 @@
 package controller;
 
 import entities.Book;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.util.Callback;
+import sun.applet.Main;
 
 import java.net.URL;
 import java.sql.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class StoreController implements Initializable {
+
+    public static final String ISBN_ATTRIBUTE = "ISBN";
+    public static final String TITLE_ATTRIBUTE = "Title";
+    public static final String CATEGORY_ATTRIBUTE = "Category";
+    public static final String AUTHOR_ATTRIBUTE = "Author Name";
+    public static final String PUBLISHER_ATTRIBUTE = "Publisher Name";
 
     @FXML private TextField searchQueryField;
     @FXML private ComboBox attributeListBox;
@@ -40,12 +51,25 @@ public class StoreController implements Initializable {
 
     @FXML
     private void handleSearch() throws Exception {
+        String attribute = (String) attributeListBox.getValue();
+        String query = searchQueryField.getText();
 
-    }
+        if(ISBN_ATTRIBUTE.equals(attribute)){
+            // Validate
+            bookData.setAll(MainController.userPanel.getBooksFinder().findBook(Integer.valueOf(query)));
+        }else if(TITLE_ATTRIBUTE.equals(attribute)){
+            // find by Title
+        }else if(CATEGORY_ATTRIBUTE.equals(attribute)){
+            bookData.setAll(MainController.userPanel.getBooksFinder().findBooksByCategory(query));
+        }else if(AUTHOR_ATTRIBUTE.equals(attribute)){
+            bookData.setAll(MainController.userPanel.getBooksFinder().findBooksByAuthor(query));
+        }else if(PUBLISHER_ATTRIBUTE.equals(attribute)){
+            bookData.setAll(MainController.userPanel.getBooksFinder().findBooksByPublisher(query));
+        }else{
+            // Error
+        }
 
-    @FXML
-    private void handleRemoveBook() throws Exception {
-
+        bookTable.setItems(bookData);
     }
 
     @FXML
@@ -53,19 +77,10 @@ public class StoreController implements Initializable {
 
     }
 
-    @FXML
-    private void handleAddToCart() throws Exception {
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        attributeListBox.getItems().add("ISBN");
-        attributeListBox.getItems().add("Title");
-        attributeListBox.getItems().add("Category");
-        attributeListBox.getItems().add("Author");
-        attributeListBox.getItems().add("Publisher");
-        attributeListBox.setValue("Title");
+
+        initializeAttributeListBox();
 
         ISBNCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getIsbn()).asObject());
         titleCol.setCellValueFactory(cellData ->  new SimpleStringProperty(cellData.getValue().getTitle()));
@@ -74,5 +89,74 @@ public class StoreController implements Initializable {
         publicationYearCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getPublicationYear()).asObject());
         categoryCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getCategory()).asObject());
         priceCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getSellingPrice()).asObject());
+
+        TableColumn<Book,Boolean> actionCol = new TableColumn<>("Action");
+        actionCol.setSortable(false);
+        actionCol.setCellValueFactory((cellData -> new SimpleBooleanProperty(cellData.getValue() != null)));
+        actionCol.setCellFactory(cell -> new ButtonCell());
+        bookTable.getColumns().add(actionCol);
+
+        Book book1 = new Book();
+        Book book2 = new Book();
+        bookData.addAll(book1,book2);
+        bookTable.setItems(bookData);
     }
+
+    //Define the button cell
+    private class ButtonCell extends TableCell<Book, Boolean> {
+        final Button cellButton = new Button("Add to Cart");
+        ButtonCell(){
+            cellButton.setOnAction(t -> {
+                int selectedIndex = getTableRow().getIndex();
+                Book selectedBook = bookTable.getItems().get(selectedIndex);
+
+                TextInputDialog dialog = createInputQuantityDialog();
+                Optional<String> result = dialog.showAndWait();
+
+                if (result.isPresent()){
+                    int quantity = Integer.valueOf(result.get());
+                    MainController.userPanel.getSalesManager().getCart().addBook(selectedBook,quantity);
+                }
+            });
+        }
+
+        //Display button if the row is not empty
+        @Override
+        protected void updateItem(Boolean t, boolean empty) {
+            super.updateItem(t, empty);
+            if(!empty){
+                setGraphic(cellButton);
+            }
+        }
+    }
+
+    private boolean isInvalidQuantity(String quantity){
+        boolean numeric = true;
+        try {
+            int num = Integer.parseInt(quantity);
+        } catch (NumberFormatException e) {
+            numeric = false;
+        }
+        return (quantity==null || !numeric);
+    }
+
+    private TextInputDialog createInputQuantityDialog(){
+        TextInputDialog dialog = new TextInputDialog("1");
+        dialog.setTitle("Add Book to the cart");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Please enter the required quantity:");
+
+        Button okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+        TextField inputField = dialog.getEditor();
+
+        BooleanBinding isInvalid = Bindings.createBooleanBinding(() -> isInvalidQuantity(inputField.getText()), inputField.textProperty());
+        okButton.disableProperty().bind(isInvalid);
+        return dialog;
+    }
+
+    private void initializeAttributeListBox(){
+        attributeListBox.getItems().addAll(ISBN_ATTRIBUTE,TITLE_ATTRIBUTE,CATEGORY_ATTRIBUTE,
+                AUTHOR_ATTRIBUTE,PUBLISHER_ATTRIBUTE,TITLE_ATTRIBUTE);
+    }
+
 }

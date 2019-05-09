@@ -4,6 +4,7 @@ import entities.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import panels.CustomerPanel;
+import panels.ManagerPanel;
 import view.App;
 
 public class SignupController {
@@ -49,7 +50,7 @@ public class SignupController {
         user.setAddress(shippingAddress);
         user.setPrivilegeType(User.PRIVILEGE_CUSTOMER);
 
-        MainController.userPanel = CustomerPanel.fromNewUser(user);
+        MainController.userPanel = (ManagerPanel) CustomerPanel.fromNewUser(user);
 
         App.getPrimaryStage().setScene(App.loadMainScene());
     }

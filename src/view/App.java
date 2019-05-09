@@ -63,7 +63,7 @@ public class App extends Application {
 
 
     private static Pane loadMainPane() throws IOException {
-        FXMLLoader loader = new FXMLLoader(new URL("file:resources/fxml/" + PaneNavigator.MAIN_PANE));
+        FXMLLoader loader = new FXMLLoader(new URL("file:resources/fxml/" + PaneNavigator.MAIN_PANE + ".fxml"));
         Pane mainPane = loader.load();
         MainController mainController = loader.getController();
         PaneNavigator.setMainController(mainController);

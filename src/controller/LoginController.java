@@ -21,11 +21,14 @@ public class LoginController {
     private void login() throws Exception {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        CustomerPanel userPanel = CustomerPanel.fromCredentials(username,password);
-        if(userPanel.getUser().getPrivilegeType()== User.PRIVILEGE_MANAGER){
-            userPanel = ManagerPanel.fromManager(userPanel.getUser());
+
+        CustomerPanel customerPanel = CustomerPanel.fromCredentials(username,password);
+        if(customerPanel.getUser().getPrivilegeType()== User.PRIVILEGE_MANAGER){
+            MainController.userPanel = ManagerPanel.fromManager(customerPanel.getUser());
+        }else{
+            MainController.userPanel = (ManagerPanel) customerPanel;
         }
-        MainController.userPanel = userPanel;
+
         App.getPrimaryStage().setScene(App.loadMainScene());
     }
 

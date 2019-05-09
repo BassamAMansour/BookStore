@@ -8,13 +8,13 @@ import java.net.URL;
 
 public class PaneNavigator {
 
-    public static final String MAIN_PANE   = "main.fxml";
-    public static final String ACCOUNT_PANE   = "account.fxml";
-    public static final String STORE_PANE = "store.fxml";
-    public static final String CART_PANE = "cart.fxml";
-    public static final String ORDERS_PANE = "orders.fxml";
-    public static final String STATISTICS_PANE = "statistics.fxml";
-    public static final String PROMOTE_CUSTOMERS_PANE = "promote.fxml";
+    public static final String MAIN_PANE   = "main";
+    public static final String ACCOUNT_PANE   = "account";
+    public static final String STORE_PANE = "store";
+    public static final String CART_PANE = "cart";
+    public static final String ORDERS_PANE = "orders";
+    public static final String STATISTICS_PANE = "statistics";
+    public static final String PROMOTE_CUSTOMERS_PANE = "promote";
 
     private static MainController mainController;
 
@@ -24,10 +24,8 @@ public class PaneNavigator {
 
     public static void loadPane(String fxml) {
         try {
-            String[] dir = fxml.split("\\.");
-            String tabID = dir[dir.length - 2];
-            mainController.setCurrentTab(tabID);
-            mainController.setPane(FXMLLoader.load( new URL("file:resources/fxml/" + fxml)));
+            mainController.setCurrentTab(fxml);
+            mainController.setPane(FXMLLoader.load( new URL("file:resources/fxml/" + fxml + ".fxml")));
         } catch (IOException e) {
             e.printStackTrace();
         }
