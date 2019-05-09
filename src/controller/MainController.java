@@ -30,7 +30,7 @@ public class MainController implements Initializable {
     @FXML private ToggleButton promoteCustomersTab;
     @FXML private ToggleButton statisticsTab;
 
-    public static ManagerPanel userPanel;
+    private static CustomerPanel userPanel;
 
     private HashMap<String,ToggleButton> tabs =  new HashMap<>();
 
@@ -65,6 +65,22 @@ public class MainController implements Initializable {
         }else if(STATISTICS_TAB.equals(tab)){
             PaneNavigator.loadPane(PaneNavigator.STATISTICS_PANE);
         }
+    }
+
+    public static ManagerPanel getUserPanelAsManager(){
+        return (ManagerPanel) userPanel;
+    }
+
+    public static CustomerPanel getUserPanel(){
+        return userPanel;
+    }
+
+    public static void setUserPanel(CustomerPanel panel){
+        userPanel = panel;
+    }
+
+    public static void setUserPanel(ManagerPanel panel){
+        userPanel = panel;
     }
 
 

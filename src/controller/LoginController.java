@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import panels.CustomerPanel;
 import panels.ManagerPanel;
+import sun.applet.Main;
 import view.App;
 
 public class LoginController {
@@ -14,7 +15,11 @@ public class LoginController {
     @FXML private TextField passwordField;
 
     public LoginController(){
-
+        try {
+            MainController.setUserPanel(ManagerPanel.fromCredentials("admin","admin"));
+        }catch (Exception e){
+            System.out.println("Admin manger is not found in the database!");
+        }
     }
 
     @FXML
@@ -23,10 +28,10 @@ public class LoginController {
         String password = passwordField.getText();
 
         CustomerPanel customerPanel = CustomerPanel.fromCredentials(username,password);
-        if(customerPanel.getUser().getPrivilegeType()== User.PRIVILEGE_MANAGER){
-            MainController.userPanel = ManagerPanel.fromManager(customerPanel.getUser());
+        if(customerPanel.getUser().getPrivilegeType()==User.PRIVILEGE_MANAGER){
+            MainController.setUserPanel(ManagerPanel.fromManager(customerPanel.getUser()));
         }else{
-            MainController.userPanel = (ManagerPanel) customerPanel;
+            MainController.setUserPanel(customerPanel);
         }
 
         App.getPrimaryStage().setScene(App.loadMainScene());

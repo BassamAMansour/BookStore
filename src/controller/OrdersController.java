@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import panels.ManagerPanel;
 import sun.applet.Main;
 
 import java.net.URL;
@@ -87,7 +88,7 @@ public class OrdersController implements Initializable {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
-                    MainController.userPanel.getStoreManager().confirmOrder(selectedOrder.getId());
+                    MainController.getUserPanelAsManager().getStoreManager().confirmOrder(selectedOrder.getId());
                     //orderTable.getItems().remove(selectedIndex);
                 } else {
                     // ... user chose CANCEL or closed the dialog

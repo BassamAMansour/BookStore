@@ -37,23 +37,26 @@ public class AccountController implements Initializable {
 
         // Validate
 
-        MainController.userPanel.getUser().setFirstName(firstNameField.getText());
-        MainController.userPanel.getUser().setLastName(lastNameField.getText());
-        MainController.userPanel.getUser().setUsername(usernameField.getText());
-        MainController.userPanel.getUser().setPassword(passwordField.getText());
-        MainController.userPanel.getUser().setEmail(emailField.getText());
-        MainController.userPanel.getUser().setPhone(phoneNumberField.getText());
-        MainController.userPanel.getUser().setAddress(shippingAddressField.getText());
+        User user = MainController.getUserPanel().getUser();
 
+        user.setFirstName(firstNameField.getText());
+        user.setLastName(lastNameField.getText());
+        user.setUsername(usernameField.getText());
+        user.setPassword(passwordField.getText());
+        user.setEmail(emailField.getText());
+        user.setPhone(phoneNumberField.getText());
+        user.setAddress(shippingAddressField.getText());
+
+        //MainController.getUserPanel().getUsersManager().updateUser(user);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        firstNameField.setText(MainController.userPanel.getUser().getFirstName());
-        lastNameField.setText(MainController.userPanel.getUser().getLastName());
-        usernameField.setText(MainController.userPanel.getUser().getUsername());
-        emailField.setText(MainController.userPanel.getUser().getEmail());
-        phoneNumberField.setText(MainController.userPanel.getUser().getPhone());
-        shippingAddressField.setText(MainController.userPanel.getUser().getAddress());
+        firstNameField.setText(MainController.getUserPanel().getUser().getFirstName());
+        lastNameField.setText(MainController.getUserPanel().getUser().getLastName());
+        usernameField.setText(MainController.getUserPanel().getUser().getUsername());
+        emailField.setText(MainController.getUserPanel().getUser().getEmail());
+        phoneNumberField.setText(MainController.getUserPanel().getUser().getPhone());
+        shippingAddressField.setText(MainController.getUserPanel().getUser().getAddress());
     }
 }

@@ -56,15 +56,15 @@ public class StoreController implements Initializable {
 
         if(ISBN_ATTRIBUTE.equals(attribute)){
             // Validate
-            bookData.setAll(MainController.userPanel.getBooksFinder().findBook(Integer.valueOf(query)));
+            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBook(Integer.valueOf(query)));
         }else if(TITLE_ATTRIBUTE.equals(attribute)){
             // find by Title
         }else if(CATEGORY_ATTRIBUTE.equals(attribute)){
-            bookData.setAll(MainController.userPanel.getBooksFinder().findBooksByCategory(query));
+            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByCategory(query));
         }else if(AUTHOR_ATTRIBUTE.equals(attribute)){
-            bookData.setAll(MainController.userPanel.getBooksFinder().findBooksByAuthor(query));
+            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByAuthor(query));
         }else if(PUBLISHER_ATTRIBUTE.equals(attribute)){
-            bookData.setAll(MainController.userPanel.getBooksFinder().findBooksByPublisher(query));
+            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByPublisher(query));
         }else{
             // Error
         }
@@ -115,7 +115,7 @@ public class StoreController implements Initializable {
 
                 if (result.isPresent()){
                     int quantity = Integer.valueOf(result.get());
-                    MainController.userPanel.getSalesManager().getCart().addBook(selectedBook,quantity);
+                    MainController.getUserPanel().getSalesManager().getCart().addBook(selectedBook,quantity);
                 }
             });
         }

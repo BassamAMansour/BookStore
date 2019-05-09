@@ -50,7 +50,7 @@ public class SignupController {
         user.setAddress(shippingAddress);
         user.setPrivilegeType(User.PRIVILEGE_CUSTOMER);
 
-        MainController.userPanel = (ManagerPanel) CustomerPanel.fromNewUser(user);
+        MainController.setUserPanel(CustomerPanel.fromNewUser(user));
 
         App.getPrimaryStage().setScene(App.loadMainScene());
     }

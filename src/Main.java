@@ -49,12 +49,12 @@ public class Main {
         */
 
         // Login as manager
-        ManagerPanel userPanel;
+        CustomerPanel userPanel = ManagerPanel.fromCredentials("admin","admin");
         CustomerPanel customerPanel = CustomerPanel.fromCredentials("admin","admin");
         if(customerPanel.getUser().getPrivilegeType()==User.PRIVILEGE_MANAGER){
             userPanel = ManagerPanel.fromManager(customerPanel.getUser());
         }else{
-            userPanel = (ManagerPanel) customerPanel;
+            userPanel = customerPanel;
         }
 
         /*

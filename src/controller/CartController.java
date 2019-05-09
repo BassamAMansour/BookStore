@@ -39,7 +39,7 @@ public class CartController implements Initializable {
 
         bookCol.setCellValueFactory(cellData ->  new SimpleStringProperty(cellData.getValue().getTitle()));
         priceCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getSellingPrice()).asObject());
-        quantityCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(MainController.userPanel.getSalesManager()
+        quantityCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(MainController.getUserPanel().getSalesManager()
                 .getCart().getBookQuantity(cellData.getValue().getIsbn())).asObject());
 
         TableColumn<Book,Boolean> actionCol = new TableColumn<>("Action");
@@ -48,7 +48,7 @@ public class CartController implements Initializable {
         actionCol.setCellFactory(cell -> new ButtonCell());
         cartTable.getColumns().add(actionCol);
 
-        cartData.setAll(MainController.userPanel.getSalesManager().getCart().getBooks());
+        cartData.setAll(MainController.getUserPanel().getSalesManager().getCart().getBooks());
         cartTable.setItems(cartData);
 
         updateTotalPriceLabel();
@@ -61,9 +61,10 @@ public class CartController implements Initializable {
 
         if (result.isPresent()){
             int creditCard = Integer.valueOf(result.get());
-            MainController.userPanel.getSalesManager().confirmSale(String.valueOf(creditCard), new Date(2020,6,30));
+            MainController.getUserPanel().getSalesManager().confirmSale(String.valueOf(creditCard), new Date(2020,6,30));
         }
     }
+
 
     //Define the button cell
     private class ButtonCell extends TableCell<Book, Boolean> {
@@ -96,7 +97,7 @@ public class CartController implements Initializable {
     }
 
     private void updateTotalPriceLabel(){
-        totalPriceLabel.setText(String.valueOf(MainController.userPanel.getSalesManager().getCart().getTotalPrice()));
+        totalPriceLabel.setText(String.valueOf(MainController.getUserPanel().getSalesManager().getCart().getTotalPrice()));
     }
 
     private boolean isInvalidCreditCard(String quantity){
