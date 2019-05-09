@@ -37,7 +37,7 @@ public class ReportsManager {
     }
 
     private List<Sale> getSalesAfterDate(Session session, Date date) {
-        String query = "FROM " + Sale.class.getName() + " AS S WHERE S.saleDate < :saleDate";
+        String query = "FROM " + Sale.class.getName() + " AS S WHERE S.saleDate >= :saleDate";
 
         return session.createQuery(query, Sale.class)
                 .setParameter("saleDate", date)
@@ -49,12 +49,15 @@ public class ReportsManager {
 
         //TODO:Implement
 
-        String query = "FROM";
+        String query = "SELECT S.userId FROM " + Sale.class.getName() + " AS S WHERE S.saleDate >= :saleDate GROUP BY COUNT(S.userId) ORDER BY S.soldQuantity DESC";
 
-        return session.createQuery(query, User.class)
+        List<Integer> sales = session.createQuery(query, Integer.class)
                 .setParameter("saleDate", date)
                 .setMaxResults(limit)
                 .getResultList();
+
+
+        return null;
     }
 
 
@@ -68,4 +71,6 @@ public class ReportsManager {
                 .setMaxResults(limit)
                 .getResultList();
     }
+
+
 }

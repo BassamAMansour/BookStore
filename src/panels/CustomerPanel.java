@@ -38,6 +38,10 @@ public class CustomerPanel {
         return new CustomerPanel(user);
     }
 
+    public void updateUser(User user) {
+        new UsersManager().updateUser(user);
+    }
+
     public User getUser() {
         return user;
     }
