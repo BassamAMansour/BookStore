@@ -1,9 +1,11 @@
 package controller;
 
+import entities.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import panels.CustomerPanel;
+import panels.ManagerPanel;
 import view.App;
 
 public class LoginController {
@@ -17,9 +19,13 @@ public class LoginController {
 
     @FXML
     private void login() throws Exception {
-        String userbame = usernameField.getText();
+        String username = usernameField.getText();
         String password = passwordField.getText();
-        //MainController.userPanel = CustomerPanel.fromCredentials(username, password);
+        CustomerPanel userPanel = CustomerPanel.fromCredentials(username,password);
+        if(userPanel.getUser().getPrivilegeType()== User.PRIVILEGE_MANAGER){
+            userPanel = ManagerPanel.fromManager(userPanel.getUser());
+        }
+        MainController.userPanel = userPanel;
         App.getPrimaryStage().setScene(App.loadMainScene());
     }
 

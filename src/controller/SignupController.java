@@ -49,7 +49,7 @@ public class SignupController {
         user.setAddress(shippingAddress);
         user.setPrivilegeType(User.PRIVILEGE_CUSTOMER);
 
-        //MainController.userPanel = CustomerPanel.fromNewUser(user);
+        MainController.userPanel = CustomerPanel.fromNewUser(user);
 
         App.getPrimaryStage().setScene(App.loadMainScene());
     }

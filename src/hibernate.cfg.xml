@@ -9,7 +9,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">5587</property>
+        <property name="hibernate.connection.password">root</property>
 
         <mapping class="entities.Author"/>
         <mapping class="entities.Book"/>
