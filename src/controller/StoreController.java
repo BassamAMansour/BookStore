@@ -56,9 +56,9 @@ public class StoreController implements Initializable {
 
         if(ISBN_ATTRIBUTE.equals(attribute)){
             // Validate
-            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBook(Integer.valueOf(query)));
+            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBookByISBN(Integer.valueOf(query)));
         }else if(TITLE_ATTRIBUTE.equals(attribute)){
-            // find by Title
+            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBookByTitle(query));
         }else if(CATEGORY_ATTRIBUTE.equals(attribute)){
             bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByCategory(query));
         }else if(AUTHOR_ATTRIBUTE.equals(attribute)){

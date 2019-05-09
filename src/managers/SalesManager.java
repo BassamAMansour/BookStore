@@ -41,7 +41,7 @@ public class SalesManager {
 
         //TODO: Add locks
         for (Sale sale : sales) {
-            Book dbBook = new BooksFinder().findBook(sale.getBookId());
+            Book dbBook = new BooksFinder().findBookByISBN(sale.getBookId());
 
             if (dbBook.getQuantity() < sale.getSoldQuantity()) {
                 saleSuccess = false;
