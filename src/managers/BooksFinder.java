@@ -19,7 +19,15 @@ public class BooksFinder {
         return book.get();
     }
 
-    public Book findBook(int isbn) {
+    public Book findBookByTitle(String title) {
+        AtomicReference<Book> book = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> book.set(getBookByTitle(session, title)));
+
+        return book.get();
+    }
+
+    public Book findBookByISBN(int isbn) {
         AtomicReference<Book> book = new AtomicReference<>();
 
         TransactionsHandler.execute((session) -> book.set(getBookByISBN(session, isbn)));
@@ -53,11 +61,20 @@ public class BooksFinder {
         return books.get();
     }
 
+
     private Book getBookByISBN(Session session, int isbn) {
         String query = "FROM " + Book.class.getName() + " AS B WHERE B.isbn = :isbn";
 
         return session.createQuery(query, Book.class)
                 .setParameter("isbn", isbn)
+                .getSingleResult();
+    }
+
+    private Book getBookByTitle(Session session, String title) {
+        String query = "FROM " + Book.class.getName() + " AS B WHERE B.title = :title";
+
+        return session.createQuery(query, Book.class)
+                .setParameter("title", title)
                 .getSingleResult();
     }
 

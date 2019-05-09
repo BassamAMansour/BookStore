@@ -46,6 +46,14 @@ public class StoreManager {
         return order.get();
     }
 
+    public List<Order> getAllOrders() {
+        AtomicReference<List<Order>> orders = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> orders.set(session.createQuery("FROM " + Order.class.getName(), Order.class).getResultList()));
+
+        return orders.get();
+    }
+
     public void confirmOrder(long orderId) {
         TransactionsHandler.execute((session) -> session.delete(session.get(Order.class, orderId)));
     }
