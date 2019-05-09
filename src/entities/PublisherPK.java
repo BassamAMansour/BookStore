@@ -9,6 +9,9 @@ public class PublisherPK implements Serializable {
     private int id;
     private String name;
 
+    public PublisherPK() {
+    }
+
     @Column(name = "id")
     @Id
     public int getId() {

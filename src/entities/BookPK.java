@@ -9,6 +9,9 @@ public class BookPK implements Serializable {
     private int isbn;
     private String title;
 
+    public BookPK() {
+    }
+
     public BookPK(int isbn, String title) {
         this.isbn = isbn;
         this.title = title;

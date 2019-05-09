@@ -47,29 +47,28 @@ public class ReportsManager {
 
     private List<User> getTopPurchasersAfterDate(Session session, Date date, int limit) {
 
-        //TODO:Implement
+        String query = "SELECT S.userId FROM " + Sale.class.getName() +
+                " AS S WHERE S.saleDate >= :saleDate GROUP BY S.userId ORDER BY COUNT(S.userId) DESC";
 
-        String query = "SELECT S.userId FROM " + Sale.class.getName() + " AS S WHERE S.saleDate >= :saleDate GROUP BY COUNT(S.userId) ORDER BY S.soldQuantity DESC";
-
-        List<Integer> sales = session.createQuery(query, Integer.class)
+        List<Integer> userIds = session.createQuery(query, Integer.class)
                 .setParameter("saleDate", date)
                 .setMaxResults(limit)
                 .getResultList();
 
-
-        return null;
+        return new UsersManager().getUsers(userIds);
     }
 
 
     private List<Book> getTopSellingBooksAfterDate(Session session, Date date, int limit) {
-        //TODO:Implement
+        String query = "SELECT S.bookId FROM " + Sale.class.getName() +
+                " AS S WHERE S.saleDate >= :saleDate GROUP BY S.bookId ORDER BY COUNT(S.bookId) DESC";
 
-        String query = "";
-
-        return session.createQuery(query, Book.class)
+        List<Integer> bookIds = session.createQuery(query, Integer.class)
                 .setParameter("saleDate", date)
                 .setMaxResults(limit)
                 .getResultList();
+
+        return new BooksFinder().findBooksByISBN(bookIds);
     }
 
 

@@ -1,15 +1,9 @@
 import entities.Book;
-import entities.Order;
 import entities.User;
-import managers.UsersManager;
-import org.hibernate.service.spi.Manageable;
-import entities.Sale;
 import panels.CustomerPanel;
 import panels.ManagerPanel;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 import java.time.Instant;
 import java.util.List;
 
@@ -20,16 +14,19 @@ public class Main {
 
         //* Testing Business Processes *//
 
-        /*
         CustomerPanel customerPanel = CustomerPanel.fromCredentials("Brock_Greenholt86", "5MDBPTXd2dGWzTl");
 
         ManagerPanel managerPanel = ManagerPanel.fromCredentials("Josiane.Dicki", "rPrBBa8rON0Phhz");
 
-        List<Sale> sales = managerPanel.getReportsManager().getSalesAfterDate(new Date(Instant.now().getEpochSecond()));
+        List<User> sales = managerPanel.getReportsManager().getTopPurchasersAfterDate(new Date(Instant.now().getEpochSecond()), 10);
 
         System.out.println(sales);
 
-         */
+        List<Book> books = managerPanel.getReportsManager().getTopSellingBooksAfterDate(new Date(Instant.now().getEpochSecond()), 10);
+
+        System.out.println(books);
+
+
 
         /*
         // Sign up - new customer
@@ -49,13 +46,15 @@ public class Main {
         */
 
         // Login as manager
-        ManagerPanel userPanel;
+        /*ManagerPanel userPanel;
         CustomerPanel customerPanel = CustomerPanel.fromCredentials("admin","admin");
         if(customerPanel.getUser().getPrivilegeType()==User.PRIVILEGE_MANAGER){
             userPanel = ManagerPanel.fromManager(customerPanel.getUser());
+
+
         }else{
             userPanel = (ManagerPanel) customerPanel;
-        }
+        }*/
 
         /*
         // edit Account
@@ -74,7 +73,7 @@ public class Main {
         customerPanel.getSalesManager().getCart().addBook(book2,1);
 
         // View items in the cart
-        List<Book> cartItems = customerPanel.getSalesManager().getCart().getBooks();
+        List<Book> cartItems = customerPanel.getSalesManager().getCart().findBooksByISBN();
         // getQuantities is missing
 
         // Remove items from the cart
