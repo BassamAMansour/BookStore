@@ -9,6 +9,9 @@ public class UserPK implements Serializable {
     private int id;
     private String username;
 
+    public UserPK() {
+    }
+
     @Column(name = "id")
     @Id
     public int getId() {

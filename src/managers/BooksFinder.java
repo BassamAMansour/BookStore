@@ -7,6 +7,7 @@ import entities.BookPK;
 import entities.Publisher;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -31,6 +32,22 @@ public class BooksFinder {
         AtomicReference<Book> book = new AtomicReference<>();
 
         TransactionsHandler.execute((session) -> book.set(getBookByISBN(session, isbn)));
+
+        return book.get();
+    }
+
+    public List<Book> findBooksByISBN(List<Integer> bookIds) {
+        AtomicReference<List<Book>> book = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> {
+            List<Book> books = new ArrayList<>(bookIds.size());
+
+            for (Integer isbn : bookIds) {
+                books.add(getBookByISBN(session, isbn));
+            }
+
+            book.set(books);
+        });
 
         return book.get();
     }
@@ -129,5 +146,4 @@ public class BooksFinder {
                 .setParameter("publisherId", publisher.getId())
                 .getResultList();
     }
-
 }

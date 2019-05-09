@@ -4,6 +4,8 @@ import database.TransactionsHandler;
 import entities.User;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class UsersManager {
@@ -33,10 +35,26 @@ public class UsersManager {
         return user.get();
     }
 
+    List<User> getUsers(List<Integer> userIds) {
+        AtomicReference<List<User>> user = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> {
+            List<User> users = new ArrayList<>(userIds.size());
+
+            for (Integer id : userIds) {
+                users.add(getUserById(id, session));
+            }
+
+            user.set(users);
+        });
+
+        return user.get();
+    }
+
     private User getUserById(int userId, Session session) {
         String query = "FROM " + User.class.getName() + " AS U WHERE U.id = :userId";
         return session.createQuery(query, User.class)
-                .setParameter("id", userId)
+                .setParameter("userId", userId)
                 .getSingleResult();
     }
 
