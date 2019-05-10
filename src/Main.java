@@ -26,6 +26,9 @@ public class Main {
 
         System.out.println(books);
 
+        System.out.println(managerPanel.getStoreManager().getAllOrders());
+        System.out.println(managerPanel.getBooksFinder().getAllAuthors());
+        System.out.println(managerPanel.getBooksFinder().getAllPublishers());
 
 
         /*

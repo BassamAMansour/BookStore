@@ -3,7 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "book_order")
 public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
