@@ -388,9 +388,9 @@
         <option name="COMPATIBILITY" value="false" />
         <option name="VIRTUAL_SERVER" />
         <option name="USERNAME" value="admin" />
-        <option name="PASSWORD" value="" />
+        <option name="CREDENTIAL_ALIAS" />
       </server-settings>
-      <predefined_log_file id="GlassFish" enabled="true" />
+      <predefined_log_file enabled="true" id="GlassFish" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="9009" />
       </RunnerSettings>
@@ -417,6 +417,7 @@
     <list>
       <item itemvalue="Application.App" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="GlassFish Server.GlassFish 5.0.0" />
     </list>
     <recent_temporary>
       <list>

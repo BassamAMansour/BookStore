@@ -94,6 +94,37 @@ public class BooksFinder {
         return publisher.get();
     }
 
+    public Author getAuthorByName(String name) {
+        AtomicReference<Author> author = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> author.set(getAuthorByName(session, name)));
+
+        return author.get();
+    }
+
+    public Publisher getPublisherByName(String name) {
+        AtomicReference<Publisher> publisher = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> publisher.set(getPublisherByName(session, name)));
+
+        return publisher.get();
+    }
+
+    public List<Author> getAllAuthors() {
+        AtomicReference<List<Author>> authors = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> authors.set(session.createQuery("FROM " + Author.class.getName(), Author.class).getResultList()));
+
+        return authors.get();
+    }
+
+    public List<Publisher> getAllPublishers() {
+        AtomicReference<List<Publisher>> publishers = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> publishers.set(session.createQuery("FROM " + Publisher.class.getName(), Publisher.class).getResultList()));
+
+        return publishers.get();
+    }
 
     private Author getAuthorById(Session session, int authorId) {
 
