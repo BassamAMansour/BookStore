@@ -27,7 +27,7 @@ public class OrdersController implements Initializable {
 
     @FXML private TableView<Order> orderTable = new TableView<>();
     @FXML private TableColumn<Order, String> bookCol;
-    @FXML private TableColumn<Order, Integer> publisherCol;
+    @FXML private TableColumn<Order, String> publisherCol;
     @FXML private TableColumn<Order, Integer> orderedQuantityCol;
 
     @FXML private ComboBox attributeListBox;
@@ -41,11 +41,11 @@ public class OrdersController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // TODO: add findBookbyId()
-        bookCol.setCellValueFactory(cellData ->  new SimpleStringProperty(String.valueOf(cellData.getValue().getBookId())));
-        // TODO: display publisherName
-        publisherCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(
-                cellData.getValue().getOrderedQuantity()).asObject());
+        bookCol.setCellValueFactory(cellData ->  new SimpleStringProperty(MainController.getUserPanelAsManager().getBooksFinder().
+                findBookByISBN(cellData.getValue().getBookId()).getTitle()));
+        publisherCol.setCellValueFactory(cellData ->  new SimpleStringProperty(MainController.getUserPanelAsManager().getBooksFinder()
+                .getPublisherById(MainController.getUserPanelAsManager().getBooksFinder()
+                        .findBookByISBN(cellData.getValue().getBookId()).getPublisherId()).getName()));
         orderedQuantityCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(
                 cellData.getValue().getOrderedQuantity()).asObject());
 
@@ -55,10 +55,10 @@ public class OrdersController implements Initializable {
         actionCol.setCellFactory(cell -> new ButtonCell());
         orderTable.getColumns().add(actionCol);
 
-        orderData.setAll(MainController.getUserPanelAsManager().getStoreManager().getAllOrders());
-        orderTable.setItems(orderData);
+        updateOrderTable();
 
-        attributeListBox.getItems().addAll("ISBN","Title");
+        attributeListBox.getItems().addAll(StoreController.ISBN_ATTRIBUTE,StoreController.TITLE_ATTRIBUTE);
+        attributeListBox.setValue(attributeListBox.getItems().get(0));
     }
 
     @FXML
@@ -110,7 +110,26 @@ public class OrdersController implements Initializable {
 
     @FXML
     private void handlePlaceOrder() {
-        // add place order functionality
+        String attribute = (String) attributeListBox.getValue();
+        String query = queryField.getText();
+        int quantity = Integer.valueOf(quantityField.getText());
+        Book book = new Book();
+        if(StoreController.ISBN_ATTRIBUTE.equals(attribute)){
+            book = MainController.getUserPanelAsManager().getBooksFinder().findBookByISBN(Integer.valueOf(query));
+        }else if(StoreController.TITLE_ATTRIBUTE.equals(attribute)){
+            book = MainController.getUserPanelAsManager().getBooksFinder().findBookByTitle(query);
+        }
+        Order order = new Order();
+        order.setBookId(book.getIsbn());
+        order.setOrderedQuantity(quantity);
+        MainController.getUserPanelAsManager().getStoreManager().addOrder(order);
+        System.out.println("Success");
+        updateOrderTable();
+    }
+
+    private void updateOrderTable(){
+        orderData.setAll(MainController.getUserPanelAsManager().getStoreManager().getAllOrders());
+        orderTable.setItems(orderData);
     }
 
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import entities.Author;
 import entities.Book;
 import entities.Publisher;
 import entities.User;
@@ -10,6 +11,9 @@ import javafx.scene.control.TextField;
 import sun.applet.Main;
 
 import java.net.URL;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddBookController implements Initializable {
@@ -37,9 +41,17 @@ public class AddBookController implements Initializable {
         categoryListBox.getItems().add(Book.Category.getCategory(Book.Category.HISTORY));
         categoryListBox.getItems().add(Book.Category.getCategory(Book.Category.GEOGRAPHY));
 
-        // Add all Authors
+        List<Author> authors = MainController.getUserPanelAsManager().getBooksFinder().getAllAuthors();
+        for(Author author : authors)
+            authorListBox.getItems().add(author.getAuthorName());
+        Collections.sort(authorListBox.getItems());
+        authorListBox.setValue(authorListBox.getItems().get(0));
 
-        // Add all Publishers
+        List<Publisher> publishers = MainController.getUserPanelAsManager().getBooksFinder().getAllPublishers();
+        for(Publisher publisher : publishers)
+            publisherListBox.getItems().add(publisher.getName());
+        Collections.sort(publisherListBox.getItems());
+        publisherListBox.setValue(publisherListBox.getItems().get(0));
     }
 
     @FXML
@@ -48,10 +60,10 @@ public class AddBookController implements Initializable {
         int isbn = Integer.valueOf(ISBNField.getText());
         int category = Book.Category.getCategory((String) categoryListBox.getValue());
         String title = titleField.getText();
-        // TODO get authorID by its name
-        int authorID = Integer.valueOf((String) authorListBox.getValue());
-        // TODO get publisherID by its name
-        int publisherID = Integer.valueOf((String) publisherListBox.getValue());
+        int authorID = MainController.getUserPanelAsManager().getBooksFinder()
+                .getAuthorByName((String) authorListBox.getValue()).getId();
+        int publisherID = MainController.getUserPanelAsManager().getBooksFinder()
+                .getPublisherByName((String) publisherListBox.getValue()).getId();
         int year = Integer.valueOf(yearField.getText());
         int price = Integer.valueOf(priceField.getText());
         int threshold = Integer.valueOf(thresholdField.getText());
@@ -74,6 +86,7 @@ public class AddBookController implements Initializable {
         MainController.getUserPanelAsManager().getStoreManager().addBook(newBook);
 
         // Success Alert
+        System.out.println("Success");
     }
 
     @FXML
