@@ -1,7 +1,5 @@
 package entities;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -142,7 +140,7 @@ public class Book {
         return Objects.hash(isbn, title, authorId, threshold, sellingPrice, category, quantity, publicationYear, publisherId, addedBy);
     }
 
-    public static class Category{
+    public static class Category {
         public static final int ERROR = 0;
         public static final int SCIENCE = 1;
         public static final int ART = 2;
@@ -150,21 +148,21 @@ public class Book {
         public static final int HISTORY = 4;
         public static final int GEOGRAPHY = 5;
 
-        public static int getCategory(String category){
-            if("Science".equals(category)) return SCIENCE;
-            else if("Art".equals(category)) return ART;
-            else if("Religion".equals(category)) return RELIGION;
-            else if("History".equals(category)) return HISTORY;
-            else if("Geography".equals(category)) return GEOGRAPHY;
+        public static int getCategory(String category) {
+            if ("Science".equals(category)) return SCIENCE;
+            else if ("Art".equals(category)) return ART;
+            else if ("Religion".equals(category)) return RELIGION;
+            else if ("History".equals(category)) return HISTORY;
+            else if ("Geography".equals(category)) return GEOGRAPHY;
             else return ERROR;
         }
 
-        public static String getCategory(int category){
-            if(category == SCIENCE) return "Science";
-            else if(category == ART) return "Art";
-            else if(category == RELIGION) return "Religion";
-            else if(category == HISTORY) return "History";
-            else if(category == GEOGRAPHY) return "Geography";
+        public static String getCategory(int category) {
+            if (category == SCIENCE) return "Science";
+            else if (category == ART) return "Art";
+            else if (category == RELIGION) return "Religion";
+            else if (category == HISTORY) return "History";
+            else if (category == GEOGRAPHY) return "Geography";
             else return "Error";
         }
     }

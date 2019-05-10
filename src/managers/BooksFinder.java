@@ -52,7 +52,7 @@ public class BooksFinder {
         return book.get();
     }
 
-    public List<Book> findBooksByCategory(String category) {
+    public List<Book> findBooksByCategory(int category) {
 
         AtomicReference<List<Book>> books = new AtomicReference<>();
 
@@ -159,7 +159,7 @@ public class BooksFinder {
                 .getSingleResult();
     }
 
-    private List<Book> findBooksByCategory(Session session, String category) {
+    private List<Book> findBooksByCategory(Session session, int category) {
         String query = "FROM " + Book.class.getName() + " AS B WHERE B.category = :category";
         return session.createQuery(query, Book.class)
                 .setParameter("category", category)
