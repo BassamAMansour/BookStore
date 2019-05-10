@@ -23,7 +23,7 @@
                     <columns>
                         <TableColumn fx:id="ISBNCol" prefWidth="66.0" text="ISBN" />
                   <TableColumn fx:id="titleCol" prefWidth="49.0" text="Title" />
-                  <TableColumn fx:id="authorsCol" prefWidth="49.0" text="Authors" />
+                  <TableColumn fx:id="authorCol" prefWidth="49.0" text="Author" />
                   <TableColumn fx:id="publisherCol" prefWidth="67.0" text="Publisher" />
                   <TableColumn fx:id="publicationYearCol" prefWidth="84.0" text="Publication Year" />
                   <TableColumn fx:id="categoryCol" prefWidth="72.0" text="Category" />

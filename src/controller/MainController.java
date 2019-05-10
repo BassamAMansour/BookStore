@@ -1,5 +1,6 @@
 package controller;
 
+import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +20,7 @@ public class MainController implements Initializable {
     public static final String STORE_TAB = "Store";
     public static final String CART_TAB = "Cart";
     public static final String ORDERS_TAB = "Orders";
-    public static final String PROMOTE_TAB = "Promote Customers";
+    public static final String PROMOTE_TAB = "Promote";
     public static final String STATISTICS_TAB = "Statistics";
     public static final String ADDBOOK_TAB = "Add Book";
 
@@ -97,6 +98,14 @@ public class MainController implements Initializable {
         tabs.put(PaneNavigator.PROMOTE_CUSTOMERS_PANE,promoteCustomersTab);
         tabs.put(PaneNavigator.STATISTICS_PANE,statisticsTab);
         tabs.put(PaneNavigator.ADD_BOOK_PANE,addbookTab);
+
+        if(userPanel.getUser().getPrivilegeType()!= User.PRIVILEGE_MANAGER){
+            ordersTab.setVisible(false);
+            addbookTab.setVisible(false);
+            promoteCustomersTab.setVisible(false);
+            statisticsTab.setVisible(false);
+
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import entities.Book;
+import entities.User;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.IntegerProperty;
@@ -39,10 +40,10 @@ public class StoreController implements Initializable {
     @FXML private TableView<Book> bookTable = new TableView<>();
     @FXML private TableColumn<Book, Integer> ISBNCol;
     @FXML private TableColumn<Book, String> titleCol;
-    @FXML private TableColumn<Book, Integer> authorsCol;
-    @FXML private TableColumn<Book, Integer> publisherCol;
+    @FXML private TableColumn<Book, String> authorCol;
+    @FXML private TableColumn<Book, String> publisherCol;
     @FXML private TableColumn<Book, Integer> publicationYearCol;
-    @FXML private TableColumn<Book, Integer> categoryCol;
+    @FXML private TableColumn<Book, String> categoryCol;
     @FXML private TableColumn<Book, Integer> priceCol;
 
     public StoreController(){
@@ -79,10 +80,12 @@ public class StoreController implements Initializable {
 
         ISBNCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getIsbn()).asObject());
         titleCol.setCellValueFactory(cellData ->  new SimpleStringProperty(cellData.getValue().getTitle()));
-        authorsCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getAuthorId()).asObject());
-        publisherCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getPublisherId()).asObject());
+        authorCol.setCellValueFactory(cellData ->  new SimpleStringProperty(MainController.getUserPanel().getBooksFinder()
+                .getAuthorById(cellData.getValue().getAuthorId()).getAuthorName()));
+        publisherCol.setCellValueFactory(cellData ->  new SimpleStringProperty(MainController.getUserPanel().getBooksFinder()
+                .getPublisherById(cellData.getValue().getPublisherId()).getName()));
         publicationYearCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getPublicationYear()).asObject());
-        categoryCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getCategory()).asObject());
+        categoryCol.setCellValueFactory(cellData ->  new SimpleStringProperty(Book.Category.getCategory(cellData.getValue().getCategory())));
         priceCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getSellingPrice()).asObject());
 
         TableColumn<Book,Boolean> actionCol = new TableColumn<>("Action");
@@ -90,6 +93,12 @@ public class StoreController implements Initializable {
         actionCol.setCellValueFactory((cellData -> new SimpleBooleanProperty(cellData.getValue() != null)));
         actionCol.setCellFactory(cell -> new ButtonCell());
         bookTable.getColumns().add(actionCol);
+
+        if(MainController.getUserPanel().getUser().getPrivilegeType()== User.PRIVILEGE_MANAGER){
+            TableColumn<Book,Integer> quantityCol = new TableColumn<>("Available Quantity");
+            quantityCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getQuantity()).asObject());
+            bookTable.getColumns().add(quantityCol);
+        }
 
         bookTable.setItems(bookData);
     }
