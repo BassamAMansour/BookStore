@@ -118,4 +118,5 @@ delimiter ;
 delimiter //
 
 use book_store;
-insert into user values(54716, "Vincent.Turcotte96", "GzCkkMpp5o5Nuw7", "Joanie92@yahoo.com", "Eveline", "Hamill", 56987, "Crooks Hill South Vitamouth", 1);
+
+insert into sale values(30055, "2019-11-13", "2019-2-27", 7450728554716622, 34, 80310, 5772529);
