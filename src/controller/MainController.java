@@ -21,6 +21,7 @@ public class MainController implements Initializable {
     public static final String ORDERS_TAB = "Orders";
     public static final String PROMOTE_TAB = "Promote Customers";
     public static final String STATISTICS_TAB = "Statistics";
+    public static final String ADDBOOK_TAB = "Add Book";
 
     @FXML private StackPane paneHolder;
     @FXML private ToggleButton accountTab;
@@ -29,6 +30,7 @@ public class MainController implements Initializable {
     @FXML private ToggleButton ordersTab;
     @FXML private ToggleButton promoteCustomersTab;
     @FXML private ToggleButton statisticsTab;
+    @FXML private ToggleButton addbookTab;
 
     private static CustomerPanel userPanel;
 
@@ -64,6 +66,8 @@ public class MainController implements Initializable {
             PaneNavigator.loadPane(PaneNavigator.PROMOTE_CUSTOMERS_PANE);
         }else if(STATISTICS_TAB.equals(tab)){
             PaneNavigator.loadPane(PaneNavigator.STATISTICS_PANE);
+        }else if(ADDBOOK_TAB.equals(tab)){
+            PaneNavigator.loadPane(PaneNavigator.ADD_BOOK_PANE);
         }
     }
 
@@ -92,6 +96,7 @@ public class MainController implements Initializable {
         tabs.put(PaneNavigator.ORDERS_PANE,ordersTab);
         tabs.put(PaneNavigator.PROMOTE_CUSTOMERS_PANE,promoteCustomersTab);
         tabs.put(PaneNavigator.STATISTICS_PANE,statisticsTab);
+        tabs.put(PaneNavigator.ADD_BOOK_PANE,addbookTab);
     }
 
 }
