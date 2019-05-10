@@ -47,7 +47,7 @@ public class AccountController implements Initializable {
         user.setPhone(phoneNumberField.getText());
         user.setAddress(shippingAddressField.getText());
 
-        //MainController.getUserPanel().getUsersManager().updateUser(user);
+        MainController.getUserPanel().updateUser(user);
     }
 
     @Override

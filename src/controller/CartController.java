@@ -62,6 +62,7 @@ public class CartController implements Initializable {
         if (result.isPresent()){
             int creditCard = Integer.valueOf(result.get());
             MainController.getUserPanel().getSalesManager().confirmSale(String.valueOf(creditCard), new Date(2020,6,30));
+            // TODO: clear all items in cart
         }
     }
 
@@ -122,11 +123,6 @@ public class CartController implements Initializable {
         BooleanBinding isInvalid = Bindings.createBooleanBinding(() -> isInvalidCreditCard(inputField.getText()), inputField.textProperty());
         okButton.disableProperty().bind(isInvalid);
         return dialog;
-    }
-
-    @FXML
-    private void handleClearAll() {
-        // add clear All functionality
     }
 
 }

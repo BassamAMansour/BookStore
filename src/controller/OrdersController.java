@@ -43,6 +43,7 @@ public class OrdersController implements Initializable {
 
         // TODO: add findBookbyId()
         bookCol.setCellValueFactory(cellData ->  new SimpleStringProperty(String.valueOf(cellData.getValue().getBookId())));
+        // TODO: display publisherName
         publisherCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(
                 cellData.getValue().getOrderedQuantity()).asObject());
         orderedQuantityCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(
@@ -54,8 +55,7 @@ public class OrdersController implements Initializable {
         actionCol.setCellFactory(cell -> new ButtonCell());
         orderTable.getColumns().add(actionCol);
 
-        // TODO: add getOrders()
-        orderData.setAll(new Order());
+        orderData.setAll(MainController.getUserPanelAsManager().getStoreManager().getAllOrders());
         orderTable.setItems(orderData);
 
         attributeListBox.getItems().addAll("ISBN","Title");
@@ -69,7 +69,9 @@ public class OrdersController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            // TODO: Confrim All
+            for(Order order: orderData){
+                MainController.getUserPanelAsManager().getStoreManager().confirmOrder(order.getId());
+            }
         } else {
             // ... user chose CANCEL or closed the dialog
         }

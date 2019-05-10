@@ -72,11 +72,6 @@ public class StoreController implements Initializable {
         bookTable.setItems(bookData);
     }
 
-    @FXML
-    private void handleAddBook() throws Exception {
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -96,9 +91,6 @@ public class StoreController implements Initializable {
         actionCol.setCellFactory(cell -> new ButtonCell());
         bookTable.getColumns().add(actionCol);
 
-        Book book1 = new Book();
-        Book book2 = new Book();
-        bookData.addAll(book1,book2);
         bookTable.setItems(bookData);
     }
 
@@ -156,7 +148,7 @@ public class StoreController implements Initializable {
 
     private void initializeAttributeListBox(){
         attributeListBox.getItems().addAll(ISBN_ATTRIBUTE,TITLE_ATTRIBUTE,CATEGORY_ATTRIBUTE,
-                AUTHOR_ATTRIBUTE,PUBLISHER_ATTRIBUTE,TITLE_ATTRIBUTE);
+                AUTHOR_ATTRIBUTE,PUBLISHER_ATTRIBUTE);
     }
 
 }
