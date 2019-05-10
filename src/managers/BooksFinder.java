@@ -78,6 +78,39 @@ public class BooksFinder {
         return books.get();
     }
 
+    public Author getAuthorById(int authorId) {
+        AtomicReference<Author> author = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> author.set(getAuthorById(session, authorId)));
+
+        return author.get();
+    }
+
+    public Publisher getPublisherById(int publisherId) {
+        AtomicReference<Publisher> publisher = new AtomicReference<>();
+
+        TransactionsHandler.execute((session) -> publisher.set(getPublisherById(session, publisherId)));
+
+        return publisher.get();
+    }
+
+
+    private Author getAuthorById(Session session, int authorId) {
+
+        String query = "FROM " + Author.class.getName() + " AS A WHERE A.id = :id";
+
+        return session.createQuery(query, Author.class)
+                .setParameter("id", authorId)
+                .getSingleResult();
+    }
+
+    private Publisher getPublisherById(Session session, int publisherId) {
+        String query = "FROM " + Publisher.class.getName() + " AS P WHERE P.id = :id";
+
+        return session.createQuery(query, Publisher.class)
+                .setParameter("id", publisherId)
+                .getSingleResult();
+    }
 
     private Book getBookByISBN(Session session, int isbn) {
         String query = "FROM " + Book.class.getName() + " AS B WHERE B.isbn = :isbn";
