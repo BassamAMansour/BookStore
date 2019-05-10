@@ -23,7 +23,8 @@
                 <ToggleButton fx:id="storeTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" styleClass="tab-button" text="Store" toggleGroup="$TabGroup" />
                 <ToggleButton fx:id="cartTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" styleClass="tab-button" text="Cart" toggleGroup="$TabGroup" />
                 <ToggleButton fx:id="ordersTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="103.0" styleClass="tab-button" text="Orders" toggleGroup="$TabGroup" />
-                <ToggleButton fx:id="promoteCustomersTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" styleClass="tab-button" text="Promote Customers" toggleGroup="$TabGroup" />
+                <ToggleButton fx:id="addbookTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="103.0" styleClass="tab-button" text="Add Book" toggleGroup="$TabGroup" />
+                <ToggleButton fx:id="promoteCustomersTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" styleClass="tab-button" text="Promote" toggleGroup="$TabGroup" />
                 <ToggleButton fx:id="statisticsTab" mnemonicParsing="false" onAction="#navigateTab" prefHeight="25.0" prefWidth="101.0" styleClass="tab-button" text="Statistics" toggleGroup="$TabGroup" />
             </children>
         </VBox>

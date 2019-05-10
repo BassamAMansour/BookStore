@@ -26,7 +26,7 @@ public class PromoteController {
 
         // Validate
 
-        User user = MainController.userPanel.getUsersManager().getUser(Integer.valueOf(userId));
+        User user = MainController.getUserPanelAsManager().getUsersManager().getUser(Integer.valueOf(userId));
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -36,7 +36,7 @@ public class PromoteController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            MainController.userPanel.getUsersManager().promoteUser(user, User.PRIVILEGE_MANAGER);
+            MainController.getUserPanelAsManager().getUsersManager().promoteUser(user, User.PRIVILEGE_MANAGER);
         } else {
             // ... user chose CANCEL or closed the dialog
         }

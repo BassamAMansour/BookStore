@@ -15,6 +15,7 @@ public class PaneNavigator {
     public static final String ORDERS_PANE = "orders";
     public static final String STATISTICS_PANE = "statistics";
     public static final String PROMOTE_CUSTOMERS_PANE = "promote";
+    public static final String ADD_BOOK_PANE = "addbook";
 
     private static MainController mainController;
 

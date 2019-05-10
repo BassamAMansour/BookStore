@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import panels.ManagerPanel;
 import sun.applet.Main;
 
 import java.net.URL;
@@ -42,6 +43,7 @@ public class OrdersController implements Initializable {
 
         // TODO: add findBookbyId()
         bookCol.setCellValueFactory(cellData ->  new SimpleStringProperty(String.valueOf(cellData.getValue().getBookId())));
+        // TODO: display publisherName
         publisherCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(
                 cellData.getValue().getOrderedQuantity()).asObject());
         orderedQuantityCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(
@@ -53,8 +55,7 @@ public class OrdersController implements Initializable {
         actionCol.setCellFactory(cell -> new ButtonCell());
         orderTable.getColumns().add(actionCol);
 
-        // TODO: add getOrders()
-        orderData.setAll(new Order());
+        orderData.setAll(MainController.getUserPanelAsManager().getStoreManager().getAllOrders());
         orderTable.setItems(orderData);
 
         attributeListBox.getItems().addAll("ISBN","Title");
@@ -68,7 +69,9 @@ public class OrdersController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            // TODO: Confrim All
+            for(Order order: orderData){
+                MainController.getUserPanelAsManager().getStoreManager().confirmOrder(order.getId());
+            }
         } else {
             // ... user chose CANCEL or closed the dialog
         }
@@ -87,7 +90,7 @@ public class OrdersController implements Initializable {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
-                    MainController.userPanel.getStoreManager().confirmOrder(selectedOrder.getId());
+                    MainController.getUserPanelAsManager().getStoreManager().confirmOrder(selectedOrder.getId());
                     //orderTable.getItems().remove(selectedIndex);
                 } else {
                     // ... user chose CANCEL or closed the dialog

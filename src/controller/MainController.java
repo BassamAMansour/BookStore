@@ -1,5 +1,6 @@
 package controller;
 
+import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,8 +20,9 @@ public class MainController implements Initializable {
     public static final String STORE_TAB = "Store";
     public static final String CART_TAB = "Cart";
     public static final String ORDERS_TAB = "Orders";
-    public static final String PROMOTE_TAB = "Promote Customers";
+    public static final String PROMOTE_TAB = "Promote";
     public static final String STATISTICS_TAB = "Statistics";
+    public static final String ADDBOOK_TAB = "Add Book";
 
     @FXML private StackPane paneHolder;
     @FXML private ToggleButton accountTab;
@@ -29,8 +31,9 @@ public class MainController implements Initializable {
     @FXML private ToggleButton ordersTab;
     @FXML private ToggleButton promoteCustomersTab;
     @FXML private ToggleButton statisticsTab;
+    @FXML private ToggleButton addbookTab;
 
-    public static ManagerPanel userPanel;
+    private static CustomerPanel userPanel;
 
     private HashMap<String,ToggleButton> tabs =  new HashMap<>();
 
@@ -64,7 +67,25 @@ public class MainController implements Initializable {
             PaneNavigator.loadPane(PaneNavigator.PROMOTE_CUSTOMERS_PANE);
         }else if(STATISTICS_TAB.equals(tab)){
             PaneNavigator.loadPane(PaneNavigator.STATISTICS_PANE);
+        }else if(ADDBOOK_TAB.equals(tab)){
+            PaneNavigator.loadPane(PaneNavigator.ADD_BOOK_PANE);
         }
+    }
+
+    public static ManagerPanel getUserPanelAsManager(){
+        return (ManagerPanel) userPanel;
+    }
+
+    public static CustomerPanel getUserPanel(){
+        return userPanel;
+    }
+
+    public static void setUserPanel(CustomerPanel panel){
+        userPanel = panel;
+    }
+
+    public static void setUserPanel(ManagerPanel panel){
+        userPanel = panel;
     }
 
 
@@ -76,6 +97,15 @@ public class MainController implements Initializable {
         tabs.put(PaneNavigator.ORDERS_PANE,ordersTab);
         tabs.put(PaneNavigator.PROMOTE_CUSTOMERS_PANE,promoteCustomersTab);
         tabs.put(PaneNavigator.STATISTICS_PANE,statisticsTab);
+        tabs.put(PaneNavigator.ADD_BOOK_PANE,addbookTab);
+
+        if(userPanel.getUser().getPrivilegeType()!= User.PRIVILEGE_MANAGER){
+            ordersTab.setVisible(false);
+            addbookTab.setVisible(false);
+            promoteCustomersTab.setVisible(false);
+            statisticsTab.setVisible(false);
+
+        }
     }
 
 }
