@@ -18,14 +18,32 @@
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
-                <TextField fx:id="userIdField" layoutX="48.0" layoutY="102.0" prefHeight="25.0" prefWidth="383.0" />
-                <Label layoutX="48.0" layoutY="76.0" text="Enter User ID:" />
-                <Button layoutX="443.0" layoutY="102.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Promote" />
-                <Label layoutX="48.0" layoutY="28.0" text="Promote users to have managers credentials">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Label>
+                <TableView fx:id="saleTable" layoutX="17.0" layoutY="52.0" prefHeight="316.0" prefWidth="543.0">
+                    <columns>
+                        <TableColumn fx:id="saleDateCol" prefWidth="126.0" text="Sale Date" />
+                        <TableColumn fx:id="saleUserCol" prefWidth="153.0" text="User" />
+                        <TableColumn fx:id="saleBookCol" prefWidth="164.0" text="Book" />
+                  <TableColumn fx:id="saleQuantityCol" prefWidth="99.0" text="Quantity" />
+                    </columns>
+                </TableView>
+            <ComboBox fx:id="reportListBox" layoutX="17.0" layoutY="14.0" prefHeight="25.0" prefWidth="472.0" />
+            <TableView fx:id="userTable" layoutX="17.0" layoutY="52.0" prefHeight="316.0" prefWidth="543.0">
+               <columns>
+                  <TableColumn fx:id="userUsernameCol" prefWidth="158.0" text="Username" />
+                  <TableColumn fx:id="userFirstNameCol" prefWidth="112.0" text="First Name" />
+                  <TableColumn fx:id="userLastNameCol" prefWidth="104.0" text="Last Name" />
+                  <TableColumn fx:id="userEmailCol" prefWidth="167.0" text="Email" />
+               </columns>
+            </TableView>
+            <TableView fx:id="bookTable" layoutX="17.0" layoutY="52.0" prefHeight="316.0" prefWidth="543.0">
+               <columns>
+                  <TableColumn fx:id="bookISBNCol" prefWidth="86.0" text="ISBN" />
+                  <TableColumn fx:id="bookTitleCol" prefWidth="184.0" text="Title" />
+                  <TableColumn fx:id="bookAuthorCol" prefWidth="104.0" text="Author" />
+                  <TableColumn fx:id="bookPublisherCol" prefWidth="167.0" text="Publisher" />
+               </columns>
+            </TableView>
+            <Button layoutX="497.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleViewReport" prefHeight="25.0" prefWidth="63.0" text="View" />
             </children>
         </AnchorPane>
     </children>
