@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 import sun.applet.Main;
 
@@ -38,13 +39,13 @@ public class StoreController implements Initializable {
     private ObservableList<Book> bookData = FXCollections.observableArrayList();
 
     @FXML private TableView<Book> bookTable = new TableView<>();
-    @FXML private TableColumn<Book, Integer> ISBNCol;
+    @FXML private TableColumn<Book, String> ISBNCol;
     @FXML private TableColumn<Book, String> titleCol;
     @FXML private TableColumn<Book, String> authorCol;
     @FXML private TableColumn<Book, String> publisherCol;
-    @FXML private TableColumn<Book, Integer> publicationYearCol;
+    @FXML private TableColumn<Book, String> publicationYearCol;
     @FXML private TableColumn<Book, String> categoryCol;
-    @FXML private TableColumn<Book, Integer> priceCol;
+    @FXML private TableColumn<Book, String> priceCol;
 
     public StoreController(){
 
@@ -52,23 +53,32 @@ public class StoreController implements Initializable {
 
     @FXML
     private void handleSearch() throws Exception {
+        bookTable.getItems().clear();
+
         String attribute = (String) attributeListBox.getValue();
         String query = searchQueryField.getText();
 
-        if(ISBN_ATTRIBUTE.equals(attribute)){
-            // Validate
-            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBookByISBN(Integer.valueOf(query)));
-        }else if(TITLE_ATTRIBUTE.equals(attribute)){
-            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBookByTitle(query));
-        }else if(CATEGORY_ATTRIBUTE.equals(attribute)){
-            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByCategory(query));
-        }else if(AUTHOR_ATTRIBUTE.equals(attribute)){
-            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByAuthor(query));
-        }else if(PUBLISHER_ATTRIBUTE.equals(attribute)){
-            bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByPublisher(query));
-        }else{
-            // Error
+        try{
+            if(ISBN_ATTRIBUTE.equals(attribute)){
+                bookData.setAll(MainController.getUserPanel().getBooksFinder().findBookByISBN(Integer.valueOf(query)));
+            }else if(TITLE_ATTRIBUTE.equals(attribute)){
+                bookData.setAll(MainController.getUserPanel().getBooksFinder().findBookByTitle(query));
+            }else if(CATEGORY_ATTRIBUTE.equals(attribute)){
+                bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByCategory(Book.Category.getCategory(query)));
+            }else if(AUTHOR_ATTRIBUTE.equals(attribute)){
+                bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByAuthor(query));
+            }else if(PUBLISHER_ATTRIBUTE.equals(attribute)){
+                bookData.setAll(MainController.getUserPanel().getBooksFinder().findBooksByPublisher(query));
+            }
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Ooops, no result is found!");
+            alert.showAndWait();
         }
+
+
 
         bookTable.setItems(bookData);
     }
@@ -78,15 +88,15 @@ public class StoreController implements Initializable {
 
         initializeAttributeListBox();
 
-        ISBNCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getIsbn()).asObject());
+        ISBNCol.setCellValueFactory(cellData ->  new SimpleStringProperty(String.valueOf(cellData.getValue().getIsbn())));
         titleCol.setCellValueFactory(cellData ->  new SimpleStringProperty(cellData.getValue().getTitle()));
         authorCol.setCellValueFactory(cellData ->  new SimpleStringProperty(MainController.getUserPanel().getBooksFinder()
                 .getAuthorById(cellData.getValue().getAuthorId()).getAuthorName()));
         publisherCol.setCellValueFactory(cellData ->  new SimpleStringProperty(MainController.getUserPanel().getBooksFinder()
                 .getPublisherById(cellData.getValue().getPublisherId()).getName()));
-        publicationYearCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getPublicationYear()).asObject());
+        publicationYearCol.setCellValueFactory(cellData ->  new SimpleStringProperty(String.valueOf(cellData.getValue().getPublicationYear())));
         categoryCol.setCellValueFactory(cellData ->  new SimpleStringProperty(Book.Category.getCategory(cellData.getValue().getCategory())));
-        priceCol.setCellValueFactory(cellData ->  new SimpleIntegerProperty(cellData.getValue().getSellingPrice()).asObject());
+        priceCol.setCellValueFactory(cellData ->  new SimpleStringProperty(String.valueOf(cellData.getValue().getSellingPrice())));
 
         TableColumn<Book,Boolean> actionCol = new TableColumn<>("Action");
         actionCol.setSortable(false);
@@ -101,6 +111,9 @@ public class StoreController implements Initializable {
         }
 
         bookTable.setItems(bookData);
+
+        if(MainController.getUserPanel().getUser().getPrivilegeType()==User.PRIVILEGE_MANAGER)
+            addEditBookFunctionality();
     }
 
     //Define the button cell
@@ -158,6 +171,52 @@ public class StoreController implements Initializable {
     private void initializeAttributeListBox(){
         attributeListBox.getItems().addAll(ISBN_ATTRIBUTE,TITLE_ATTRIBUTE,CATEGORY_ATTRIBUTE,
                 AUTHOR_ATTRIBUTE,PUBLISHER_ATTRIBUTE);
+        attributeListBox.setValue(attributeListBox.getItems().get(0));
     }
 
+    private void addEditBookFunctionality(){
+
+        authorCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        authorCol.setOnEditCommit(
+                (TableColumn.CellEditEvent<Book, String> t) -> {
+                    Book book = t.getTableView().getItems().get(t.getTablePosition().getRow());
+                    book.setAuthorId(MainController.getUserPanelAsManager().getBooksFinder()
+                            .getAuthorById(Integer.valueOf(t.getNewValue())).getId());
+                    MainController.getUserPanelAsManager().getStoreManager().updateBook(book);
+                });
+
+        publisherCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        publisherCol.setOnEditCommit(
+                (TableColumn.CellEditEvent<Book, String> t) -> {
+                    Book book = t.getTableView().getItems().get(t.getTablePosition().getRow());
+                    book.setPublisherId(MainController.getUserPanelAsManager().getBooksFinder()
+                            .getPublisherById(Integer.valueOf(t.getNewValue())).getId());
+                    MainController.getUserPanelAsManager().getStoreManager().updateBook(book);
+                });
+
+        publicationYearCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        publicationYearCol.setOnEditCommit(
+                (TableColumn.CellEditEvent<Book, String> t) -> {
+                    Book book = t.getTableView().getItems().get(t.getTablePosition().getRow());
+                    book.setPublicationYear(Integer.valueOf(t.getNewValue()));
+                    MainController.getUserPanelAsManager().getStoreManager().updateBook(book);
+                });
+
+        priceCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        priceCol.setOnEditCommit(
+                (TableColumn.CellEditEvent<Book, String> t) -> {
+                    Book book = t.getTableView().getItems().get(t.getTablePosition().getRow());
+                    book.setSellingPrice(Integer.valueOf(t.getNewValue()));
+                    MainController.getUserPanelAsManager().getStoreManager().updateBook(book);
+                });
+
+        categoryCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        categoryCol.setOnEditCommit(
+                (TableColumn.CellEditEvent<Book, String> t) -> {
+                    Book book = t.getTableView().getItems().get(t.getTablePosition().getRow());
+                    book.setCategory(Book.Category.getCategory(t.getNewValue()));
+                    MainController.getUserPanelAsManager().getStoreManager().updateBook(book);
+                });
+
+    }
 }

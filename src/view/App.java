@@ -6,6 +6,7 @@ import controller.PaneNavigator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -28,10 +29,9 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
         primaryStage.setTitle("Book Store");
-        //primaryStage.setResizable(false);
-        //primaryStage.getIcons().add(new Image("file:resources/images/logo.png"));
+        primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image("file:resources/images/logo.png"));
         primaryStage.setScene(loadLoginScene());
-        //primaryStage.setScene(createScene(loadMainPane()));
         primaryStage.show();
 
     }
