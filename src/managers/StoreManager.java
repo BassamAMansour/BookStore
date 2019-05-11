@@ -31,7 +31,7 @@ public class StoreManager {
     }
 
     public void updateBook(Book book) {
-        TransactionsHandler.execute((session) -> session.update(book));
+        TransactionsHandler.execute((session) -> session.saveOrUpdate(book));
     }
 
     public void addOrder(Order order) {

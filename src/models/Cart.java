@@ -46,4 +46,9 @@ public class Cart {
     public Book getBook(int isbn) {
         return books.get(isbn);
     }
+
+    public void clearAll(){
+        books.clear();
+        bookQuantity.clear();
+    }
 }

@@ -14,24 +14,24 @@
 
 <!--<?scenebuilder-stylesheet tab.css?>-->
 
-<StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StoreController">
+<StackPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StoreController">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
-                <TextField fx:id="searchQueryField" layoutX="148.0" layoutY="12.0" prefHeight="25.0" prefWidth="347.0" promptText="Search for ..." />
-                <TableView fx:id="bookTable" layoutX="17.0" layoutY="49.0" prefHeight="318.0" prefWidth="543.0">
+                <TextField fx:id="searchQueryField" layoutX="195.0" layoutY="12.0" prefHeight="25.0" prefWidth="466.0" promptText="Search for ..." />
+                <TableView fx:id="bookTable" editable="true" layoutX="17.0" layoutY="49.0" prefHeight="514.0" prefWidth="746.0">
                     <columns>
-                        <TableColumn fx:id="ISBNCol" prefWidth="66.0" text="ISBN" />
-                  <TableColumn fx:id="titleCol" prefWidth="49.0" text="Title" />
-                  <TableColumn fx:id="authorCol" prefWidth="49.0" text="Author" />
-                  <TableColumn fx:id="publisherCol" prefWidth="67.0" text="Publisher" />
-                  <TableColumn fx:id="publicationYearCol" prefWidth="84.0" text="Publication Year" />
-                  <TableColumn fx:id="categoryCol" prefWidth="72.0" text="Category" />
-                  <TableColumn fx:id="priceCol" prefWidth="70.0" text="Price ($)" />
+                        <TableColumn fx:id="ISBNCol" prefWidth="71.0" text="ISBN" />
+                  <TableColumn fx:id="titleCol" prefWidth="157.0" text="Title" />
+                  <TableColumn fx:id="authorCol" prefWidth="105.0" text="Author" />
+                  <TableColumn fx:id="publisherCol" prefWidth="95.0" text="Publisher" />
+                  <TableColumn fx:id="publicationYearCol" prefWidth="58.0" text="Year" />
+                  <TableColumn fx:id="categoryCol" prefWidth="59.0" text="Category" />
+                  <TableColumn fx:id="priceCol" prefWidth="62.0" text="Price ($)" />
                     </columns>
                 </TableView>
-                <Button layoutX="506.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="25.0" prefWidth="53.0" text="Search" />
-            <ComboBox fx:id="attributeListBox" layoutX="17.0" layoutY="12.0" prefHeight="25.0" prefWidth="120.0" promptText="Attribure" />
+                <Button layoutX="671.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="25.0" prefWidth="92.0" text="Search" />
+            <ComboBox fx:id="attributeListBox" layoutX="17.0" layoutY="12.0" prefHeight="25.0" prefWidth="168.0" promptText="Attribure" />
             </children>
         </AnchorPane>
     </children>

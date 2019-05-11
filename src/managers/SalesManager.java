@@ -32,6 +32,9 @@ public class SalesManager {
 
         TransactionsHandler.execute((session -> saleSuccess.set(proceedWithSales(session, sales))));
 
+        if(saleSuccess.get())
+            cart.clearAll();
+
         return saleSuccess.get();
     }
 

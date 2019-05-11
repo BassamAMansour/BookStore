@@ -14,6 +14,7 @@ public class Main {
 
         //* Testing Business Processes *//
 
+        /*
         CustomerPanel customerPanel = CustomerPanel.fromCredentials("Brock_Greenholt86", "5MDBPTXd2dGWzTl");
 
         ManagerPanel managerPanel = ManagerPanel.fromCredentials("Josiane.Dicki", "rPrBBa8rON0Phhz");
@@ -29,8 +30,10 @@ public class Main {
         System.out.println(managerPanel.getStoreManager().getAllOrders());
         System.out.println(managerPanel.getBooksFinder().getAllAuthors());
         System.out.println(managerPanel.getBooksFinder().getAllPublishers());
+        */
 
-
+        ManagerPanel panel = ManagerPanel.fromCredentials("admin","admin");
+        panel.getStoreManager().confirmOrder(175);
         /*
         // Sign up - new customer
         User user = new User();

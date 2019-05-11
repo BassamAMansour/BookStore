@@ -6,6 +6,7 @@ import entities.Publisher;
 import entities.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import sun.applet.Main;
@@ -69,8 +70,6 @@ public class AddBookController implements Initializable {
         int threshold = Integer.valueOf(thresholdField.getText());
         int quantity = Integer.valueOf(quantityField.getText());
 
-        // Validate
-
         Book newBook = new Book();
         newBook.setIsbn(isbn);
         newBook.setCategory(category);
@@ -85,8 +84,12 @@ public class AddBookController implements Initializable {
 
         MainController.getUserPanelAsManager().getStoreManager().addBook(newBook);
 
-        // Success Alert
-        System.out.println("Success");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText("The book was added successfully!");
+
+        alert.showAndWait();
     }
 
     @FXML

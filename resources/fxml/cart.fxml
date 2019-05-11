@@ -14,20 +14,26 @@
 
 <!--<?scenebuilder-stylesheet tab.css?>-->
 
-<StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CartController">
+<StackPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CartController">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
-                <Button defaultButton="true" layoutX="487.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCheckout" text="Checkout!" />
-                <TableView fx:id="cartTable" layoutX="17.0" layoutY="12.0" prefHeight="315.0" prefWidth="543.0">
+                <Button defaultButton="true" layoutX="691.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleCheckout" text="Checkout!" />
+                <TableView fx:id="cartTable" layoutX="17.0" layoutY="12.0" prefHeight="515.0" prefWidth="744.0">
                     <columns>
-                        <TableColumn fx:id="bookCol" prefWidth="257.0" text="Book" />
-                  <TableColumn fx:id="priceCol" prefWidth="88.0" text="Price ($)" />
-                  <TableColumn fx:id="quantityCol" prefWidth="79.0" text="Quantity" />
+                        <TableColumn fx:id="bookCol" prefWidth="364.0" text="Book" />
+                  <TableColumn fx:id="priceCol" prefWidth="100.0" text="Price ($)" />
+                  <TableColumn fx:id="quantityCol" prefWidth="123.0" text="Quantity" />
                     </columns>
                 </TableView>
-            <Label layoutX="14.0" layoutY="345.0" text="Total Price ($) :" />
-            <Label fx:id="totalPriceLabel" layoutX="99.0" layoutY="347.0" text="10" />
+            <Label layoutX="20.0" layoutY="545.0" text="Total Price ($) :">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="totalPriceLabel" layoutX="114.0" layoutY="545.0" text="10">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             </children>
         </AnchorPane>
     </children>
