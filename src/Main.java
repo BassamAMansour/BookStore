@@ -29,7 +29,10 @@ public class Main {
         System.out.println(managerPanel.getStoreManager().getAllOrders());
         System.out.println(managerPanel.getBooksFinder().getAllAuthors());
         System.out.println(managerPanel.getBooksFinder().getAllPublishers());
+        /*managerPanel.getSalesManager().getCart().addBook(managerPanel.getBooksFinder().findBookByISBN(214), 10);
+        managerPanel.getSalesManager().confirmSale("16", new Date(Date.from(Instant.now()).getTime()));*/
 
+        managerPanel.getStoreManager().confirmOrder(73);
 
         /*
         // Sign up - new customer

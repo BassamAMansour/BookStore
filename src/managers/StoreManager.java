@@ -38,7 +38,7 @@ public class StoreManager {
         TransactionsHandler.execute((session) -> session.saveOrUpdate(order));
     }
 
-    public Order getOrder(long orderId) {
+    public Order getOrder(int orderId) {
         AtomicReference<Order> order = new AtomicReference<>();
 
         TransactionsHandler.execute((session) -> order.set(session.get(Order.class, orderId)));
@@ -54,7 +54,7 @@ public class StoreManager {
         return orders.get();
     }
 
-    public void confirmOrder(long orderId) {
+    public void confirmOrder(int orderId) {
         TransactionsHandler.execute((session) -> session.delete(session.get(Order.class, orderId)));
     }
 
