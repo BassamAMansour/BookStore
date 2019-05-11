@@ -3,16 +3,14 @@ package controller;
 import entities.Author;
 import entities.Book;
 import entities.Publisher;
-import entities.User;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import sun.applet.Main;
 
 import java.net.URL;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
