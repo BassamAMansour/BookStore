@@ -1,44 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c7130ed-d229-4075-a0cf-f5fa5473f70a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/controller/AddBookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/controller/AddBookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/controller/CartController$ButtonCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/controller/CartController$ButtonCell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/controller/CartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/controller/CartController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/controller/OrdersController$ButtonCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/controller/OrdersController$ButtonCell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/controller/OrdersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/controller/OrdersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/controller/PromoteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/controller/PromoteController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/controller/StoreController$ButtonCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/controller/StoreController$ButtonCell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/controller/StoreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/controller/StoreController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/managers/BooksFinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/managers/BooksFinder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/managers/SalesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/managers/SalesManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/managers/StoreManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/managers/StoreManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Book Store/models/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Book Store/models/Cart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/account.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/account.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/addbook.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/addbook.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/cart.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/cart.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/orders.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/orders.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/promote.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/promote.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/statistics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/statistics.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/store.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/store.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AddBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AddBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/PromoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PromoteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/BooksFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/BooksFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/SalesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/SalesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/StoreManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/App.java" afterDir="false" />
-    </list>
+    <list default="true" id="4c7130ed-d229-4075-a0cf-f5fa5473f70a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,13 +66,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/fxml/main.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+            <state relative-caret-position="187">
+              <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -153,10 +117,10 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="272">
               <caret line="33" column="25" lean-forward="true" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
             </state>
           </provider>
@@ -208,7 +172,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
@@ -358,13 +322,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19048000" />
+    <option name="totallyTimeSpent" value="20369000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49635038" visible="true" weight="0.26399395" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49635038" visible="true" weight="0.26399395" />
       <window_info id="Structure" order="1" sideWeight="0.50364965" side_tool="true" weight="0.2647504" />
       <window_info id="Designer" order="2" />
       <window_info id="Persistence" order="3" sideWeight="0.50364965" side_tool="true" weight="0.2647504" />
@@ -376,7 +340,7 @@
       <window_info id="DB Browser" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49924356" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.62027234" visible="true" weight="0.32569557" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.62027234" visible="true" weight="0.32569557" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49848714" weight="0.39770868" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -604,14 +568,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/fxml/main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/fxml/orders.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -737,10 +693,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="272">
           <caret line="33" column="25" lean-forward="true" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/fxml/main.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
 </project>
