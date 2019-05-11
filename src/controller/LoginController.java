@@ -1,12 +1,12 @@
 package controller;
 
 import entities.User;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
 import panels.CustomerPanel;
 import panels.ManagerPanel;
-import sun.applet.Main;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+
 import view.App;
 
 public class LoginController {

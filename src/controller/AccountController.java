@@ -1,15 +1,12 @@
 package controller;
 
 import entities.User;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import panels.CustomerPanel;
-import panels.ManagerPanel;
-import sun.applet.Main;
-import view.App;
 
 import java.net.URL;
 import java.util.ResourceBundle;

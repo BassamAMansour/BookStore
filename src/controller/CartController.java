@@ -1,11 +1,8 @@
 package controller;
 
 import entities.Book;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
+
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -17,10 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
-import sun.applet.Main;
 
 import java.net.URL;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -33,8 +28,10 @@ public class CartController implements Initializable {
     @FXML private TableColumn<Book, String> bookCol;
     @FXML private TableColumn<Book, Integer> priceCol;
     @FXML private TableColumn<Book, Integer> quantityCol;
+    private TableColumn<Book,Boolean> actionCol = new TableColumn<>("Action");
 
     @FXML private Label totalPriceLabel;
+
 
     public CartController(){
 
@@ -48,7 +45,7 @@ public class CartController implements Initializable {
         quantityCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(MainController.getUserPanel().getSalesManager()
                 .getCart().getBookQuantity(cellData.getValue().getIsbn())).asObject());
 
-        TableColumn<Book,Boolean> actionCol = new TableColumn<>("Action");
+
         actionCol.setSortable(false);
         actionCol.setCellValueFactory((cellData -> new SimpleBooleanProperty(cellData.getValue() != null)));
         actionCol.setCellFactory(cell -> new ButtonCell());
@@ -72,13 +69,15 @@ public class CartController implements Initializable {
                  SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
                  java.util.Date date = sdf1.parse(expiryDate);
                  java.sql.Date sqlExpiryDate = new java.sql.Date(date.getTime());
-                 MainController.getUserPanel().getSalesManager().confirmSale(cardNum,sqlExpiryDate);
+                 MainController.getUserPanel().getSalesManager().confirmSale(cardNum, sqlExpiryDate);
                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
                  alert.setTitle("Information");
                  alert.setHeaderText(null);
                  alert.setContentText("Checkout is done successfully!");
 
                  alert.showAndWait();
+                 cartTable.getItems().clear();
+                 cartTable.refresh();
              }else{
                  Alert alert = new Alert(Alert.AlertType.ERROR);
                  alert.setTitle("Error");
@@ -103,8 +102,11 @@ public class CartController implements Initializable {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
+                    Book book = cartTable.getItems().get(selectedIndex);
+                    MainController.getUserPanel().getSalesManager().getCart().removeBook(book);
                     cartTable.getItems().remove(selectedIndex);
                     updateTotalPriceLabel();
+                    cartTable.refresh();
                 } else {
                     // ... user chose CANCEL or closed the dialog
                 }

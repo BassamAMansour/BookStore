@@ -2,10 +2,8 @@ package controller;
 
 import entities.Book;
 import entities.Order;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
+
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,11 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import panels.ManagerPanel;
-import sun.applet.Main;
 
 import java.net.URL;
-import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -91,7 +86,7 @@ public class OrdersController implements Initializable {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
                     MainController.getUserPanelAsManager().getStoreManager().confirmOrder(selectedOrder.getId());
-                    //orderTable.getItems().remove(selectedIndex);
+                    orderTable.getItems().remove(selectedIndex);
                 } else {
                     // ... user chose CANCEL or closed the dialog
                 }

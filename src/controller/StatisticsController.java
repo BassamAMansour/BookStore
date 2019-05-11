@@ -3,9 +3,7 @@ package controller;
 import entities.Book;
 import entities.Sale;
 import entities.User;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.SimpleBooleanProperty;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -17,7 +15,6 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.sql.Date;
 import java.time.Instant;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class StatisticsController implements Initializable {

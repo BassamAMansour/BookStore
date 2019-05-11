@@ -1,10 +1,11 @@
 package controller;
 
 import entities.User;
+import panels.CustomerPanel;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import panels.CustomerPanel;
-import panels.ManagerPanel;
+
 import view.App;
 
 public class SignupController {

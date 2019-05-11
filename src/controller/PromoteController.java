@@ -1,11 +1,11 @@
 package controller;
 
 import entities.User;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import sun.applet.Main;
 
 import java.util.Optional;
 
