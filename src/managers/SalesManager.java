@@ -32,7 +32,7 @@ public class SalesManager {
 
         TransactionsHandler.execute((session -> saleSuccess.set(proceedWithSales(session, sales))));
 
-        if(saleSuccess.get())
+        if (saleSuccess.get())
             cart.clearAll();
 
         return saleSuccess.get();
@@ -46,6 +46,7 @@ public class SalesManager {
         for (Sale sale : sales) {
             Book dbBook = new BooksFinder().findBookByISBN(sale.getBookId());
 
+
             if (dbBook.getQuantity() < sale.getSoldQuantity()) {
                 saleSuccess = false;
                 rejectSale(session, sale);
@@ -53,9 +54,10 @@ public class SalesManager {
             } else {
                 dbBook.setQuantity(dbBook.getQuantity() - sale.getSoldQuantity());
                 session.update(dbBook);
-                session.save(sale);
+                TransactionsHandler.execute((session1 -> session1.save(sale)));
             }
         }
+
 
         return saleSuccess;
     }
